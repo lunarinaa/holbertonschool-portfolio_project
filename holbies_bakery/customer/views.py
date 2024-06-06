@@ -41,8 +41,7 @@ class Order(View):
         email = request.POST.get('email')
         street = request.POST.get('street')
         city = request.POST.get('city')
-        state = request.POST.get('state')
-        zip_code = request.POST.get('zip')
+        country = request.POST.get('country')
 
         order_items = {
             'items': []
