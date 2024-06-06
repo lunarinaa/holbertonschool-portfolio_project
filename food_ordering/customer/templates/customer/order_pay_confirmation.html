@@ -1,12 +1,82 @@
+<!DOCTYPE html>
 {% extends 'customer/base.html' %}
 
 {% block content %}
-<div class="container mb-5">
-    <div class="row justify-content-center mt-1">
-        <div class="col-md-5 col-sm-12 p-4 text-center">
-            <h1>Payment Submitted!</h1>
-            <a href="{% url 'index' %}">Go to the homepage</a>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <style>
+        /* Reset CSS */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Custom CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-confirmation {
+            text-align: center;
+        }
+
+        .confirmation-heading {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-text {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background-color: #E1003C;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+            text-decoration: none; /* Remove underline */
+            display: inline-block; /* Ensure inline display */
+        }
+
+        .btn-primary:hover {
+            background-color: #9B002C;
+        }
+
+        .btn-primary:focus {
+            outline: none; /* Remove focus outline */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="payment-confirmation">
+            <h1 class="confirmation-heading">Payment Submitted!</h1>
+            <p class="confirmation-text">Thank you for your payment.</p>
+            <a href="{% url 'index' %}" class="btn btn-primary">Go to Homepage</a>
         </div>
     </div>
-</div>
+</body>
+</html>
 {% endblock content %}

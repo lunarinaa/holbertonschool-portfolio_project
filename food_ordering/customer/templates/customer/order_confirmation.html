@@ -1,32 +1,37 @@
 {% extends 'customer/base.html' %}
 
 {% block content %}
-<div class="container mb-5">
-    <div class="row justify-content-center mt-1">
-        <div class="col-md-5 col-sm-12 p-4 text-center">
+<div class="container">
+    <div class="content">
+        <div class="confirmation">
             <h1>Order Submitted!</h1>
             <p>You should receive a confirmation email soon.</p>
-            <a href="{% url 'index' %}">Go to the homepage</a>
+            <a href="{% url 'index' %}" class="home-link">Go to the homepage</a>
         </div>
-    </div>
 
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5 col-sm-12 text-center">
-            <h3 class="pb-3">Order Summary:</h3>
-            {% for item in items.all %}
-                <p>{{ item.name }} <span class="pl-3">{{ item.price }}</span></p>
-            {% endfor %}
-
-            <p class="font-weight-bold pt-4">Total: {{ price }}</p>
+        <div class="order-summary">
+            <h3>Order Summary:</h3>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items.all %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p class="total">Total: {{ price }}</p>
         </div>
-    </div>
-    <div class="row justify-content-center pb-2 pt-5">
-        <div class="col-md-6 text-center">
+
+        <div class="payment-options">
             <h3>Pay Now or Pay With Cash At Delivery</h3>
-        </div>
-    </div>
-    <div class="row justify-content-center pb-5">
-        <div class="col-md-6 text-center">
             <div id="paypal-button"></div>
         </div>
     </div>
@@ -40,7 +45,6 @@
         const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
             if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
@@ -52,24 +56,18 @@
 const csrftoken = getCookie('csrftoken');
 
   paypal.Button.render({
-    // Configure environment
     env: 'sandbox',
     client: {
       sandbox: 'ATf0mGB3vK4K0ruj9oujCFC_YSC_2W-PmNuNYNdcqdixOKmz7mic_Wadms0Ua7d7X9T4sl9phxJwwgIh',
       production: 'demo_production_client_id'
     },
-    // Customize button (optional)
     locale: 'en_US',
     style: {
       size: 'large',
       color: 'blue',
       shape: 'rect',
     },
-
-    // Enable Pay Now checkout flow (optional)
     commit: true,
-
-    // Set up a payment
     payment: function(data, actions) {
       return actions.payment.create({
         transactions: [{
@@ -80,10 +78,8 @@ const csrftoken = getCookie('csrftoken');
         }]
       });
     },
-    // Execute the payment
     onAuthorize: function(data, actions) {
       return actions.payment.execute().then(function() {
-        // Show a confirmation message to the buyer
         $.ajax({
             type: 'POST',
             url: "{% url 'order-confirmation' pk %}",
@@ -93,11 +89,152 @@ const csrftoken = getCookie('csrftoken');
             data: JSON.stringify({'isPaid': true}),
             success: function(data) {
                 window.location.href = '/payment-confirmation/'
-            }
+            } 
         })
       });
     }
   }, '#paypal-button');
-
 </script>
 {% endblock content %}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background: linear-gradient(to right, #ffecd2, #fcb69f);
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .confirmation h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 2.5rem;
+        color: #E1003C; /* Updated color */
+        margin-bottom: 20px;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .confirmation p {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .home-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #E1003C; /* Updated color */
+        border-radius: 50px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .home-link:hover {
+        background-color: #9B002C; /* Updated hover color */
+        transform: translateY(-3px);
+    }
+
+    .order-summary {
+        margin-top: 40px;
+    }
+
+    .order-summary h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #333;
+        position: relative;
+    }
+
+    .order-summary h3::after {
+        content: '';
+        width: 60px;
+        height: 3px;
+        background-color: #E1003C; /* Updated color */
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .summary-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .summary-table th, .summary-table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .summary-table th {
+        background-color: #f9f9f9;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .summary-table td {
+        text-align: left;
+    }
+
+    .total {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 20px;
+        color: #E1003C; /* Updated color */
+        text-align: right;
+    }
+
+    .payment-options {
+        margin-top: 40px;
+    }
+
+    .payment-options h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #333;
+        position: relative;
+    }
+
+    .payment-options h3::after {
+        content: '';
+        width: 60px;
+        height: 3px;
+        background-color: #E1003C; /* Updated color */
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #paypal-button {
+        margin-top: 20px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+            to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

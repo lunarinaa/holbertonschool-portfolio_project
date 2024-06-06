@@ -1,159 +1,221 @@
 {% extends 'customer/base.html' %}
 
 {% block content %}
-<div class="container mb-5">
-    <div class="row justify-content-center mt-1">
-        <div class="col-md-12 col-sm-12 p-4">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="pt-5">
-                    {% for app in appetizers %}
-                    <div class="row">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ app.image.url }}" width="150" height="100"/>
+<style>
+    /* Better CSS styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .confirmation-message {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .confirmation-message h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .confirmation-message a {
+        text-decoration: none;
+        color: #e1003c;
+        font-weight: 500;
+    }
+    
+    form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Input styles */
+    input[type="text"],
+    input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Button styles */
+    button[type="submit"],
+    button[type="button"] {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: #e1003c;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 20px;
+        transition: background-color 0.3s ease-in-out;
+    }
+    
+    button[type="submit"]:hover,
+    button[type="button"]:hover {
+        background-color: #c7002b;
+    }
+    
+    /* Modal container styles */
+.modal-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Modal styles */
+.modal {
+    flex: 0 0 48%; /* Adjust width as needed */
+}
+
+.modal-content {
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    background: #e1003c;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.modal-footer .btn {
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.modal-footer .btn-go-back {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.modal-footer .btn-go-back:hover {
+    background-color: #5a6268;
+}
+
+.modal-footer .btn-place-order {
+    background-color: #333;
+    color: #fff;
+}
+
+.modal-footer .btn-place-order:hover {
+    background-color: #555;
+}
+
+/* Adjust modal positions */
+.modal:first-child {
+    margin-right: 20px;
+}
+
+</style>
+
+<div class="container">
+    <div class="confirmation-message">
+        <h1>Payment Submitted!</h1>
+        <a href="{% url 'index' %}">Go to the homepage</a>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        {% for category, items in categories.items %}
+        <div>
+            {% for item in items %}
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                <img src="{{ item.image.url }}" alt="{{ item.name }}" style="border-radius: 10px; width: 150px; height: 100px; object-fit: cover; margin-right: 20px;">
+                <div style="flex-grow: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center;">
+                            <input type="checkbox" name="items[]" value="{{ item.pk }}" style="margin-right: 10px;">
+                            <label style="font-size: 1.2rem; font-weight: 600;">{{ item.name }}</label>
                         </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ app.pk }}">
-                                    <label class="form-check-label">{{ app.name }}</label>
-                                </div>
-                                <p class="font-weight-bold pl-5">{{ app.price }}</p>
-                            </div>
-                            <p>{{ app.description }}</p>
-                        </div>
+                        <p style="font-size: 1.2rem; font-weight: 600; color: #e1003c;">{{ item.price }}</p>
                     </div>
-                    <hr />
-                {% endfor %}
+                    <p style="font-size: 1rem; color: #666;">{{ item.description }}</p>
                 </div>
+            </div>
+            <hr style="border: 0; border-top: 1px solid #ddd;">
+            {% endfor %}
+        </div>
+        {% endfor %}
 
-                <div class="pt-5">
-                    {% for entre in entres %}
-                    <div class="row mt-4">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ entre.image.url }}" width="150" height="100"/>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ entre.pk }}">
-                                    <label class="form-check-label">{{ entre.name }}</label>
-                                </div>
-                                <p class="font-weight-bold pl-5">{{ entre.price }}</p>
-                            </div>
-                            <p>{{ entre.description }}</p>
-                        </div>
-                    </div>
-                    <hr />
-                    {% endfor %}
-                </div>
+        <div>
+            <label for="name">Full Name</label>
+            <input required type="text" name="name" placeholder="Your Name">
+        </div>
 
-                <div class="pt-5">
-                    {% for dessert in desserts %}
-                    <div class="row mt-4">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ dessert.image.url }}" width="150" height="100"/>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}">
-                                    <label class="form-check-label">{{ dessert.name }}</label>
-                                </div>
-                                <p class="font-weight-bold pl-5">{{ dessert.price }}</p>
-                            </div>
-                            <p>{{ dessert.description }}</p>
-                        </div>
-                    </div>
-                    <hr />
-                    {% endfor %}
-                </div>
+        <div>
+            <label for="email">Email Address</label>
+            <input required type="email" name="email" placeholder="example@company.com">
+        </div>
 
-                <div class="pt-5">
-                    {% for drink in drinks %}
-                    <div class="row mt-4">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ drink.image.url }}" width="150" height="100"/>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}">
-                                    <label class="form-check-label">{{ drink.name }}</label>
-                                </div>
-                                <p class="font-weight-bold pl-5">{{ drink.price }}</p>
-                            </div>
-                            <p>{{ drink.description }}</p>
-                        </div>
-                    </div>
-                    <hr />
-                    {% endfor %}
-                </div>
+        <div>
+            <label for="street">Street Address</label>
+            <input required type="text" name="street" placeholder="1234 Main St">
+        </div>
 
-                <div class="form-group pt-3">
-                    <label for="name">Full Name</label>
-                    <input required class="form-control" type="text" placeholder="Your Name" name="name" />
-                </div>
+        <div style="display: flex; justify-content: space-between; gap: 10px;">
+            <div style="flex: 1;">
+                <label for="city">City</label>
+                <input required type="text" name="city" placeholder="San Francisco">
+            </div>
+            <div style="flex: 1;">
+                <label for="state">State</label>
+                <input required type="text" name="state" placeholder="CA">
+            </div>
+            <div style="flex: 1;">
+                <label for="zip">Zip Code</label>
+                <input required type="text" name="zip" placeholder="94117">
+            </div>
+        </div>
 
-                <div class="form-group pt-3">
-                    <label for="name">Email Address</label>
-                    <input required class="form-control" type="text" placeholder="example@company.com" name="email" />
-                </div>
+        <!-- Button trigger modal -->
+        <button type="button" data-toggle="modal" data-target="#submitModal">Submit Order!</button>
 
-                <div class="form-group pt-3">
-                    <label for="name">Street Address</label>
-                    <input required class="form-control" type="text" placeholder="1234 Main St" name="street" />
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group pt-3">
-                            <label for="name">City</label>
-                            <input required class="form-control" type="text" placeholder="San Francisco" name="city" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group pt-3">
-                            <label for="name">State</label>
-                            <input required class="form-control" type="text" placeholder="CA" name="state" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group pt-3">
-                            <label for="name">Zip Code</label>
-                            <input required class="form-control" type="text" placeholder="94117" name="zip" />
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#submitModal">
-                  Submit Order!
-                </button>
-                <!-- <button class="btn btn-dark mt-5">Place Order!</button> -->
-
-                <!-- Modal -->
-                <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
+        <!-- Modal -->
+        <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
                         <h5 class="modal-title" id="submitModalLabel">Submit Your Order!</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times;</span>
                         </button>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Go Back</button>
-                        <button type="submit" class="btn btn-dark">Place Order!</button>
-                      </div>
                     </div>
-                  </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Go Back</button>
+                        <button type="submit" class="btn">Place Order!</button>
+                    </div>
                 </div>
-
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 {% endblock content %}

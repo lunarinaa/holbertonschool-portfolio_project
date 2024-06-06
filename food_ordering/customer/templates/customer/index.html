@@ -5,13 +5,191 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
             <h1>Online Food Delivery Service</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .hero-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        .hero-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.1);
+            transition: transform 0.3s ease-in-out;
+            filter: brightness(70%);
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            z-index: 1;
+            padding: 0 20px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 300;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            animation: slideIn 1.5s ease-out forwards;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            animation: glowing 2s infinite alternate, slideIn 1.5s ease-out forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        @keyframes glowing {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translate(-50%, -60%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero-content .cta-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content a {
+            display: inline-block;
+            background-color: transparent;
+            border: 2px solid #fff;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        .hero-content a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .hero-content a:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+        }
+
+        .arrow-container {
+            position: absolute;
+            width: 400px;
+            height: 100px;
+            top: 50%;
+            left: -420px;
+            transform: translateY(-50%);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.7) 100%);
+            z-index: 0;
+        }
+
+        svg {
+            fill: none;
+            stroke: white;
+            stroke-width: 3;
+            animation: draw 2s ease-in-out infinite;
+        }
+
+        @keyframes draw {
+            0% {
+                stroke-dasharray: 0, 400;
+            }
+            100% {
+                stroke-dasharray: 400, 0;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hero-container">
+        <div class="overlay"></div>
+        <img src="https://images.unsplash.com/photo-1611678849233-6715cbb56e4e" alt="Hero Image">
+        <div class="hero-content">
+            <h1>Holbies' Bakery Delivery Service</h1>
+            <h2>Freshly Baked to Your Doorstep</h2>
+            <p>Delicious homemade baked goods delivered straight to your home. Order now and enjoy the taste of freshly baked treats!</p>
+            <div class="cta-container">
+                <a href="{% url 'order' %}">Order Now!</a>
+                <div class="arrow-container">
+                    <svg width="400" height="100" viewBox="0 0 400 100">
+                        <path d="M0,50 Q100,0 200,50 T400,50" />
+                        <polygon points="400,400 400,400 400,400" fill="white" />
+                    </svg>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row justify-content-center mt-1">
-        <div class="card col-md-5 col-sm-12 offset-md-1 p-4 text-center">
-            <h2>Place an Order!</h2>
-            <a href="{% url 'order' %}" class="btn btn-outline-primary">Order Now!</a>
-        </div>
-    </div>
-</div>
+</body>
+</html>
 {% endblock content %}
