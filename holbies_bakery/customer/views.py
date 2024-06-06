@@ -15,20 +15,20 @@ class About(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'customer/about.html')
 
+class Contact(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'customer/contact.html')
+
 
 class Order(View):
     def get(self, request, *args, **kwargs):
         # get every item from each category
-        appetizers = MenuItem.objects.filter(
-            category__name__contains='Appetizer')
-        entres = MenuItem.objects.filter(category__name__contains='Entre')
         desserts = MenuItem.objects.filter(category__name__contains='Dessert')
         drinks = MenuItem.objects.filter(category__name__contains='Drink')
 
         # pass into context
         context = {
-            'appetizers': appetizers,
-            'entres': entres,
+
             'desserts': desserts,
             'drinks': drinks,
         }
@@ -41,7 +41,7 @@ class Order(View):
         email = request.POST.get('email')
         street = request.POST.get('street')
         city = request.POST.get('city')
-        country = request.POST.get('country')
+        state = request.POST.get('country')
 
         order_items = {
             'items': []
@@ -73,14 +73,13 @@ class Order(View):
             street=street,
             city=city,
             state=state,
-            zip_code=zip_code
         )
         order.items.add(*item_ids)
 
-        # After everything is done, send confirmation email to the user
-        body = ('Thank you for your order! Your food is being made and will be delivered soon!\n'
+        
+        body = ('Thank you for your order! Your will be delivered soon!\n'
                 f'Your total: {price}\n'
-                'Thank you again for your order!')
+                'Enjoy!')
 
         send_mail(
             'Thank You For Your Order!',
