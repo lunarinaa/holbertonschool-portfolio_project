@@ -7,52 +7,10 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="pt-5">
-                    {% for app in appetizers %}
-                    <div class="row">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ app.image.url }}" width="150" height="100"/>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ app.pk }}">
-                                    <label class="form-check-label">{{ app.name }}</label>
-                                </div>
-                                <p class="font-weight-bold pl-5">{{ app.price }}</p>
-                            </div>
-                            <p>{{ app.description }}</p>
-                        </div>
-                    </div>
-                    <hr />
-                {% endfor %}
-                </div>
-
-                <div class="pt-5">
-                    {% for entre in entres %}
-                    <div class="row mt-4">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ entre.image.url }}" width="150" height="100"/>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ entre.pk }}">
-                                    <label class="form-check-label">{{ entre.name }}</label>
-                                </div>
-                                <p class="font-weight-bold pl-5">{{ entre.price }}</p>
-                            </div>
-                            <p>{{ entre.description }}</p>
-                        </div>
-                    </div>
-                    <hr />
-                    {% endfor %}
-                </div>
-
-                <div class="pt-5">
                     {% for dessert in desserts %}
                     <div class="row mt-4">
                         <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ dessert.image.url }}" width="150" height="100"/>
+                            <img class="rounded" src="{{ dessert.image.url }}" width="100" height="120"/>
                         </div>
                         <div class="col-md-8 col-sm-12">
                             <div class="d-flex flex-row">
@@ -73,7 +31,7 @@
                     {% for drink in drinks %}
                     <div class="row mt-4">
                         <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ drink.image.url }}" width="150" height="100"/>
+                            <img class="rounded" src="{{ drink.image.url }}" width="100" height="120"/>
                         </div>
                         <div class="col-md-8 col-sm-12">
                             <div class="d-flex flex-row">
