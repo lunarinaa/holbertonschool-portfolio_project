@@ -1,6 +1,129 @@
 {% extends 'restaurant/base.html' %}
 
 {% block content %}
+<style>/* Today's Total Revenue and Total Orders Container Styles */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+    
+    .section-container {
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    
+    .section-container h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    /* Today's Total Revenue and Total Orders Styles (Contained within Section Container) */
+    .card-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .card {
+        flex: 1;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        padding: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .card h4 {
+        margin-bottom: 10px;
+        color: #555;
+        font-family: 'Poppins', sans-serif; /* Modern font family applied here */
+        font-size: 1.2rem; /* Adjusted font size for better visibility */
+    }
+    
+    .card h1 {
+        font-size: 2rem; /* Adjusted font size for better visibility */
+        margin: 0;
+        color: #E1003C; /* Main color applied here */
+        font-family: 'Poppins', sans-serif; /* Modern font family applied here */
+    }
+    
+    /* Table Styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        overflow: hidden;
+    }
+    
+    thead {
+        background-color: #E1003C; /* Main color applied here */
+        color: #fff;
+    }
+    
+    thead th {
+        padding: 12px;
+        text-align: left;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    tbody tr {
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    tbody tr:last-child {
+        border-bottom: none;
+    }
+    
+    tbody tr:hover {
+        background-color: rgba(225, 0, 60, 0.1);
+    }
+    
+    tbody td {
+        padding: 12px;
+        vertical-align: middle;
+    }
+    
+    th, td {
+        padding: 12px;
+    }
+    
+    a {
+        color: #E1003C; /* Main color applied here */
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    a:hover {
+        color: #b80031; /* Darker shade for hover */
+    }
+    
+    /* Animation */
+    .card, th, td, a {
+        animation: fadeIn 1s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    </style>
     <div class="container">
         <div class="row justify-content-center mt-3">
             <div class="card col-md-5 mr-3">
