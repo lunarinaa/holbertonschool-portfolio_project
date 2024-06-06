@@ -42,6 +42,7 @@ class Order(View):
         street = request.POST.get('street')
         city = request.POST.get('city')
         state = request.POST.get('country')
+        phone = request.POST.get('phone')
 
         order_items = {
             'items': []
@@ -73,6 +74,7 @@ class Order(View):
             street=street,
             city=city,
             state=state,
+            phone=phone,
         )
         order.items.add(*item_ids)
 
