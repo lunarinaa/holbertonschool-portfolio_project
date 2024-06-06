@@ -5,7 +5,48 @@
 {% block head_title %}{% trans "Account Inactive" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Account Inactive" %}</h1>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-<p>{% trans "This account is inactive." %}</p>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    h1 {
+        color: #E1003C;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #E1003C;
+        padding-bottom: 10px;
+        display: inline-block;
+    }
+    
+    p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        color: #555;
+    }
+</style>
+
+<div class="container">
+    <h1>{% trans "Account Inactive" %}</h1>
+    <p>{% trans "This account is inactive." %}</p>
+</div>
+
 {% endblock %}
