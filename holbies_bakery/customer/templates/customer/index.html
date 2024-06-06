@@ -3,25 +3,39 @@
 
 {% block content %}
 
-<div class="container mb-5 background-container">
-    <div class="content">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
-                <h1>Welcome to Holbies' Bakery!</h1>
-                <p>Your one-stop destination for delicious, handcrafted cakes and pastries. We are delighted to serve you the finest baked goods, made with love and the highest quality ingredients.</p>
+<div class="container mb-5">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
+            <h1>Welcome to Holbies' Bakery!</h1>
+            <p>Your one-stop destination for delicious, handcrafted cakes and pastries. We are delighted to serve you the finest baked goods, made with love and the highest quality ingredients.</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-5 col-sm-12 offset-md-1 p-4 text-center">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h2><img src="{% static 'images/cupcake_1.png' %}" alt="Holbies' Bakery Logo" width="100" height="100"> Order Now! <img src="{% static 'images/cupcake_1.png' %}" alt="cupcake" width="100" height="100"></h2>
+                    <a href="{% url 'order' %}" class="btn btn-danger">GO!</a>
+                </div>
             </div>
         </div>
-        <div class="row justify-content-center mt-1">
-            <div class="card col-md-5 col-sm-12 offset-md-1 p-4 text-center">
-                <h2><img src="{% static 'images/cupcake_1.png' %}" alt="Holbies' Bakery Logo" width="100" height="100"> Try our cakes <img src="{% static 'images/cupcake_1.png' %}" alt="Holbies' Bakery Logo" width="100" height="100"></h2>
-                <a href="{% url 'order' %}" class="btn btn-danger">Order Now!</a>
+        <div class="col-md-5 col-sm-12 offset-md-1 p-4 text-center">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h2><img src="{% static 'images/cupcake_1.png' %}" alt="Holbies' Bakery Logo" width="100" height="100"> Visit Us! <img src="{% static 'images/cupcake_1.png' %}" alt="cupcake" width="100" height="100"></h2>
+                    <a href="{% url 'contact' %}" class="btn btn-danger">GO!</a>
+                </div>
             </div>
         </div>
-        <div class="row justify-content-center mt-1">
-            <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
-                <h3>Our Delivery Service</h3>
-                <p>Enjoy our delicious cakes and pastries delivered straight to your doorstep. Whether it's for a special occasion or just to satisfy your sweet tooth, we're here to make it easy for you.</p>
-            </div>
+    </div>
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-5 col-sm-12 offset-md-1 p-4 text-center">
+            <h3>Our Delivery Service</h3>
+            <p>Enjoy our delicious cakes and pastries delivered straight to your doorstep. Whether it's for a special occasion or just to satisfy your sweet tooth, we're here to make it easy for you.</p>
+        </div>
+        <div class="col-md-5 col-sm-12 offset-md-1 p-4 text-center">
+            <h3>Our Place</h3>
+            <p>Step into a world of delightful aromas and warm ambiance, where every corner tells a story of passion for baking and dedication to excellence. Our friendly staff and inviting atmosphere make every visit a memorable experience. Join us for a cup of coffee and a slice of happiness!</p>
         </div>
     </div>
 </div>
