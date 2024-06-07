@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.db.models import Q
 from django.core.mail import send_mail
-from .models import MenuItem, Category, OrderModel
+from .models import MenuItem, Category, OrderModel, OrderItem
 
 
 class Index(View):
@@ -25,6 +25,7 @@ class Order(View):
         # get every item from each category
         desserts = MenuItem.objects.filter(category__name__contains='Dessert')
         drinks = MenuItem.objects.filter(category__name__contains='Drink')
+        
 
         # pass into context
         context = {
@@ -49,23 +50,8 @@ class Order(View):
         }
 
         items = request.POST.getlist('items[]')
-
-        for item in items:
-            menu_item = MenuItem.objects.get(pk__contains=int(item))
-            item_data = {
-                'id': menu_item.pk,
-                'name': menu_item.name,
-                'price': menu_item.price
-            }
-
-            order_items['items'].append(item_data)
-
-            price = 0
-            item_ids = []
-
-        for item in order_items['items']:
-            price += item['price']
-            item_ids.append(item['id'])
+        price = 0
+        item_ids = []
 
         order = OrderModel.objects.create(
             price=price,
@@ -76,9 +62,40 @@ class Order(View):
             state=state,
             phone=phone,
         )
+
+        for item in items:
+            menu_item = MenuItem.objects.get(pk=int(item))
+            quantity = int(request.POST.get(f'quantity_{item}', 1))
+
+            # Create OrderItem instance for each item with quantity
+            order_item = OrderItem.objects.create(
+                order=order,
+                menu_item=menu_item,
+                quantity=quantity
+            )
+
+            # Calculate the total price of the order
+            order.price += order_item.menu_item.price * order_item.quantity
+            order.save()  # Save the updated order with the new price
+
+            # Update item_data to include quantity
+            item_data = {
+                'id': menu_item.pk,
+                'name': menu_item.name,
+                'price': menu_item.price,
+                'quantity': quantity
+            }
+
+            order_items['items'].append(item_data)
+
+        for item in order_items['items']:
+            price += item['price'] * item['quantity']
+            item_ids.append(item['id'])
+
+        order.price = price
+        order.save()
         order.items.add(*item_ids)
 
-        
         body = ('Thank you for your order! Your will be delivered soon!\n'
                 f'Your total: {price}\n'
                 'Enjoy!')
@@ -105,7 +122,7 @@ class OrderConfirmation(View):
 
         context = {
             'pk': order.pk,
-            'items': order.items,
+            'order_items': order.order_items.all(),
             'price': order.price,
         }
 

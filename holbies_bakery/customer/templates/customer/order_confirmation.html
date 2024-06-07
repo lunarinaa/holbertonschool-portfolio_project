@@ -3,33 +3,49 @@
 {% block content %}
 <div class="container mb-5">
     <div class="row justify-content-center mt-1">
-        <div class="col-md-5 col-sm-12 p-4 text-center">
-            <h1>Order Submitted!</h1>
-            <p>You will recieve a confirmation email soon.</p>
-            <a href="{% url 'index' %}">Go to the homepage</a>
-        <div></div>
-            <a href="{% url 'order' %}">Place another order</a>
-
+        <div class="col-md-8 col-sm-12 p-4 text-center">
+            <h1 class="mb-4">Order Submitted!</h1>
+            <p class="mb-4">You will receive a confirmation email soon.</p>
+            <a href="{% url 'index' %}" class="btn btn-danger mb-3">Go to the homepage</a>
+            <a href="{% url 'order' %}" class="btn btn-danger mb-3">Place another order</a>
         </div>
     </div>
 
     <div class="row justify-content-center mt-5">
-        <div class="col-md-5 col-sm-12 text-center">
-            <h3 class="pb-3">Order Summary:</h3>
-            {% for item in items.all %}
-                <p>{{ item.name }} <span class="pl-3">{{ item.price }}</span></p>
-            {% endfor %}
-
-            <p class="font-weight-bold pt-4">Total: {{ price }}</p>
+        <div class="col-md-8 col-sm-12 text-center">
+            <h3 class="pb-3">Order Summary</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order_item in order_items %}
+                        <tr>
+                            <td>{{ order_item.menu_item.name }}</td>
+                            <td>{{ order_item.quantity }}</td>
+                            <td>${{ order_item.menu_item.price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <p class="font-weight-bold pt-4">Total to be payed: ${{ price }}</p>
         </div>
     </div>
+
     <div class="row justify-content-center pb-2 pt-5">
-        <div class="col-md-6 text-center">
+        <div class="col-md-8 text-center">
             <h3>Pay Now or Pay With Cash At Delivery</h3>
         </div>
     </div>
+
     <div class="row justify-content-center pb-5">
-        <div class="col-md-6 text-center">
+        <div class="col-md-8 text-center">
             <div id="paypal-button"></div>
         </div>
     </div>

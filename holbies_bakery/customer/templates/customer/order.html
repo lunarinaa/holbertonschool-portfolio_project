@@ -6,48 +6,78 @@
         <div class="col-md-12 col-sm-12 p-4">
             <form method="POST">
                 {% csrf_token %}
+
+                <!-- Desserts Section -->
                 <div class="pt-5">
-                    {% for dessert in desserts %}
-                    <div class="row mt-4">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ dessert.image.url }}" width="100" height="120"/>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}">
-                                    <label class="form-check-label">{{ dessert.name }}</label>
+                    <button class="btn btn-danger mb-3" type="button" data-toggle="collapse" data-target="#dessertsCollapse" aria-expanded="false" aria-controls="dessertsCollapse">
+                        Show Desserts
+                    </button>
+                    <div class="collapse" id="dessertsCollapse">
+                        <div class="card">
+                            <div class="card-body">
+                                {% for dessert in desserts %}
+                                <div class="row mt-4">
+                                    <div class="col-md-2 col-sm-12">
+                                        <img class="rounded" src="{{ dessert.image.url }}" width="100" height="120"/>
+                                    </div>
+                                    <div class="col-md-8 col-sm-12">
+                                        <div class="d-flex flex-row">
+                                            <div class="form-group form-check">
+                                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}">
+                                                <label class="form-check-label">{{ dessert.name }}</label>
+                                            </div>
+                                            <p class="font-weight-bold pl-5">{{ dessert.price }}</p>
+                                            <div class="form-group ml-3">
+                                                <label for="quantity_{{ dessert.pk }}">Quantity:</label>
+                                                <input type="number" name="quantity_{{ dessert.pk }}" class="form-control" value="0" min="0">
+                                            </div>
+                                        </div>
+                                        <p>{{ dessert.description }}</p>
+                                    </div>
                                 </div>
-                                <p class="font-weight-bold pl-5">{{ dessert.price }}</p>
+                                <hr />
+                                {% endfor %}
                             </div>
-                            <p>{{ dessert.description }}</p>
                         </div>
                     </div>
-                    <hr />
-                    {% endfor %}
                 </div>
 
+                <!-- Drinks Section -->
                 <div class="pt-5">
-                    {% for drink in drinks %}
-                    <div class="row mt-4">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ drink.image.url }}" width="100" height="120"/>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}">
-                                    <label class="form-check-label">{{ drink.name }}</label>
+                    <button class="btn btn-danger mb-3" type="button" data-toggle="collapse" data-target="#drinksCollapse" aria-expanded="false" aria-controls="drinksCollapse">
+                        Show Drinks
+                    </button>
+                    <div class="collapse" id="drinksCollapse">
+                        <div class="card">
+                            <div class="card-body">
+                                {% for drink in drinks %}
+                                <div class="row mt-4">
+                                    <div class="col-md-2 col-sm-12">
+                                        <img class="rounded" src="{{ drink.image.url }}" width="100" height="120"/>
+                                    </div>
+                                    <div class="col-md-8 col-sm-12">
+                                        <div class="d-flex flex-row">
+                                            <div class="form-group form-check">
+                                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}">
+                                                <label class="form-check-label">{{ drink.name }}</label>
+                                            </div>
+                                            <p class="font-weight-bold pl-5">{{ drink.price }}</p>
+                                            <div class="form-group ml-3">
+                                                <label for="quantity_{{ drink.pk }}">Quantity:</label>
+                                                <input type="number" name="quantity_{{ drink.pk }}" class="form-control" value="0" min="0">
+                                            </div>
+                                        </div>
+                                        <p>{{ drink.description }}</p>
+                                    </div>
                                 </div>
-                                <p class="font-weight-bold pl-5">{{ drink.price }}</p>
+                                <hr />
+                                {% endfor %}
                             </div>
-                            <p>{{ drink.description }}</p>
                         </div>
                     </div>
-                    <hr />
-                    {% endfor %}
                 </div>
 
+                <!-- Customer Information Section -->
                 <div class="form-group pt-3">
                     <label for="name">Full Name</label>
                     <input required class="form-control" type="text" placeholder="Your Name" name="name" />
@@ -83,14 +113,12 @@
                             <input required class="form-control" type="text" placeholder="012 345 67 89" name="phone" />
                         </div>
                     </div>
-
                 </div>
 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#submitModal">
                   Submit Order!
                 </button>
-                <!-- <button class="btn btn-danger mt-5">Place Order!</button> -->
 
                 <!-- Modal -->
                 <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
@@ -104,7 +132,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-dismiss="modal">Go Back</button>
-                        <button type="submit" class="btn btn-dark">Place Order!</button>
+                        <button type="submit" class="btn btn-danger">Place Order!</button>
                       </div>
                     </div>
                   </div>

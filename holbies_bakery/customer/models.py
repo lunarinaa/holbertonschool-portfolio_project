@@ -19,11 +19,21 @@ class Category(models.Model):
         return self.name
 
 
+class OrderItem(models.Model):
+    order = models.ForeignKey('OrderModel', related_name='order_items', on_delete=models.CASCADE)  # Use a string
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity}x {self.menu_item.name}"
+    
+
+
 class OrderModel(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
-    items = models.ManyToManyField(
-        'MenuItem', related_name='order', blank=True)
+    
+    items = models.ManyToManyField(MenuItem, through=OrderItem, related_name='order', blank=True)
     name = models.CharField(max_length=50, blank=True)
     email = models.CharField(max_length=50, blank=True)
     street = models.CharField(max_length=50, blank=True)
@@ -35,3 +45,6 @@ class OrderModel(models.Model):
 
     def __str__(self):
         return f'Order: {self.created_on.strftime("%b %d %I: %M %p")}'
+
+# Store the quantity of each item
+
