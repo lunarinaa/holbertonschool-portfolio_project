@@ -7,6 +7,9 @@
             <h1>Order Submitted!</h1>
             <p>You will recieve a confirmation email soon.</p>
             <a href="{% url 'index' %}">Go to the homepage</a>
+        <div></div>
+            <a href="{% url 'order' %}">Place another order</a>
+
         </div>
     </div>
 
@@ -40,7 +43,6 @@
         const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
             if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
