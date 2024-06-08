@@ -2,6 +2,8 @@
 {% load static %}
 {% block content %}
 {% load mathfilters %}
+
+{% if cart_items %}
 <div class="container mt-5">
     <h2>Cart Summary</h2>
     <table class="table">
@@ -32,4 +34,10 @@
         </tbody>
     </table>
 </div>
+<br><br><br><br><br><br>
+
+{% else %}
+
+<div >Cart is empty</div>
+{% endif %}
 {% endblock content %}
