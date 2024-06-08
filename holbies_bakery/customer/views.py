@@ -5,6 +5,12 @@ from django.db.models import Q
 from django.core.mail import send_mail
 from .models import MenuItem, Category, OrderModel, OrderItem
 
+def item(request, pk):
+    item = MenuItem.objects.get(id=pk)
+    context = {
+        'item': item
+    }
+    return render(request, 'customer/item.html', context)
 
 class Index(View):
     def get(self, request, *args, **kwargs):

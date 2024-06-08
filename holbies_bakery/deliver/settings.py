@@ -37,6 +37,7 @@ AUTHENTICATION_BACKENDS = [
 
 INSTALLED_APPS = [
     'customer',
+    'cart',
     'restaurant',
     'bootstrap4',
 
@@ -81,7 +82,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart'
+                ,
             ],
+
         },
     },
 ]
