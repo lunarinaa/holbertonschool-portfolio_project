@@ -26,3 +26,7 @@ class Cart():
         item_ids = self.cart.keys()
         items = MenuItem.objects.filter(id__in=item_ids)
         return items
+    
+    def get_quants(self):
+        quantities = self.cart
+        return quantities

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'cart',
     'restaurant',
     'bootstrap4',
+    'mathfilters',
 
     'crispy_forms',
     'crispy_bootstrap4',

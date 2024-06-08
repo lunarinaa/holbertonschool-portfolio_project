@@ -1,32 +1,35 @@
 {% extends 'customer/base.html' %}
 {% load static %}
-
 {% block content %}
-
-<div class="container mb-5">
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
-            <h1>shopping cart</h1>
-            <p><h5>view your cart. </h5></p>
-        </div>
-    </div>
-<br/><br/>
-<div class="container"> 
-    {% if cart_items %}
-    {% for item in cart_items %}
-    {{item}} {{ item.price }}<br/>
-    {% endfor %}
-    {% else %}
-    <br>
-    <br>
-    <br>
-    The cart is empty
-    {% endif %}
+{% load mathfilters %}
+<div class="container mt-5">
+    <h2>Cart Summary</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Item</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td><img src="{{ item.image.url }}" alt="{{ item.name }}" width="100"></td>
+                <td>{{ item.name }}</td>
+                <td>
+                    {%for key, value in quantities.items %}
+                    {% if key == item.id|slugify %}
+                    {{ value }}
+                    {% endif %}
+                    {% endfor %}
+                </td>
+                <td>${{ item.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
-<br/>
-<br/>
-<br/>
-
-
-
 {% endblock content %}
