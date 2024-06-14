@@ -1,9 +1,8 @@
+
 {% extends 'customer/base.html' %}
 {% load static %}
-{% block content %}
 {% load mathfilters %}
-
-{% if cart_items %}
+{% block content %}
 <div class="container mt-5">
     <h2>Cart Summary</h2>
     <table class="table">
@@ -13,7 +12,6 @@
                 <th scope="col">Item</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
-                
             </tr>
         </thead>
         <tbody>
@@ -22,11 +20,23 @@
                 <td><img src="{{ item.image.url }}" alt="{{ item.name }}" width="100"></td>
                 <td>{{ item.name }}</td>
                 <td>
-                    {%for key, value in quantities.items %}
-                    {% if key == item.id|slugify %}
-                    {{ value }}
-                    {% endif %}
-                    {% endfor %}
+                    <div class="d-flex align-items-center">
+                        <select class="form-select me-2" aria-label="Default select example" id="select{{item.id}}" style="width: auto;">
+                            <option selected>
+                                {% for key, value in quantities.items %}
+                                    {% if key == item.id|slugify %}
+                                        {{ value }}
+                                    {% endif %}
+                                {% endfor %}
+                            </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <button type="button" data-item-id="{{ item.id }}" class="btn btn-secondary update-cart">Update</button>
+                    </div>
                 </td>
                 <td>${{ item.price }}</td>
             </tr>
@@ -34,10 +44,26 @@
         </tbody>
     </table>
 </div>
-<br><br><br><br><br><br>
-
-{% else %}
-
-<div >Cart is empty</div>
-{% endif %}
+<script>
+    $(document).on('click', ".update-cart", function(e){
+        e.preventDefault();
+        var itemid = $(this).data('index');
+        $.ajax({
+            type: 'POST',
+            url: "/cart/update/",
+            data: {
+                item_id: $(this).data('index'),
+                item_qty: $('#select' + itemid + 'option:selected').text(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+            success: function(json){
+              location.reload();
+            },
+            error: function(xhr, errmsg, err){
+                console.log('Error:', err);
+            }
+        });
+    });
+</script>
 {% endblock content %}
