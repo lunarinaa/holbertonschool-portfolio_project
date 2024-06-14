@@ -18,6 +18,19 @@ class Cart():
             # self.cart[item_id] = {'qty': 'cart_quantity' }
             self.cart[item_id] = int(item_qty)
         self.session.modified = True
+
+    def cart_total(self):
+        item_ids = self.cart.keys()
+        items = MenuItem.objects.filter(id__in=item_ids)
+        quantities = self.cart
+        total = 0
+        for key, value in quantities.items():
+            key = int(key)
+            for i in items:
+                if i.id == key:
+                   total = total + (i.price * value)
+        return total
+
     
     def __len__(self):
         return len(self.cart)
@@ -45,7 +58,7 @@ class Cart():
         item_id = str(item)
         if item_id in self.cart:
             del self.cart[item_id]
-            
+
         self.session.modified = True
         return self.cart
         

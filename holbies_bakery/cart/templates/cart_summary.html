@@ -42,9 +42,15 @@
                 <td>${{ item.price }}</td>
             </tr>
             {% endfor %}
+
+            <th scope="col"><strong>Total ${{ totals }}</strong></th>
+            <br><br>
+            <br><br>
+
         </tbody>
     </table>
 </div>
+
 <script>
     // update cart
     $(document).on('click', ".update-cart", function(e){
