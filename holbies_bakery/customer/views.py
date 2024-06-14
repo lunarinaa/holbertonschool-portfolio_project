@@ -205,7 +205,7 @@ class Checkout(View):
         price = 0
 
         order = OrderModel.objects.create(
-            price=price,  # Initial price set to 0
+            price=price,  
             name=name,
             email=email,
             street=street,
@@ -223,7 +223,7 @@ class Checkout(View):
                 quantity=quantity
             )
 
-            order.price += item.price * quantity  # Calculate total price
+            order.price += item.price * quantity  
             order.save()
 
             item_data = {
@@ -234,9 +234,9 @@ class Checkout(View):
             }
             order_items['items'].append(item_data)
 
-        # Send confirmation email
+       
         body = (
-            "Thank you for your order! Your food will be delivered soon!\n"
+            "Thank you for your order! Your order will be delivered soon!\n"
             f"Your total: {order.price}\n"
             "Enjoy!"
         )
@@ -244,12 +244,12 @@ class Checkout(View):
         send_mail(
             'Thank You For Your Order!',
             body,
-            'example@example.com',  # Replace with your actual email
+            'example@example.com',  
             [email],
             fail_silently=False
         )
 
-        # Clear the cart after a successful order
+        
         cart.clear()
 
         # Pass order information to the confirmation page

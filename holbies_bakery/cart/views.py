@@ -10,9 +10,14 @@ from customer.models import MenuItem, OrderModel, OrderItem
 def cart_summary(request):
     cart = Cart(request)
     cart_items = cart.get_items()
-    quantities = cart.get_quants
+    quantities = cart.get_quants()
     totals = cart.cart_total()
-    return render(request, "cart_summary.html", {'cart_items': cart_items, 'quantities':quantities, 'totals':totals})
+    #quantity cart
+    total_quantity = 0
+    for item_id, quantity in quantities.items():
+        total_quantity += quantity
+
+    return render(request, "cart_summary.html", {'cart_items': cart_items, 'quantities':quantities, 'totals':totals, 'total_quantity': total_quantity})
 
 def cart_add(request):
     cart = Cart(request)
