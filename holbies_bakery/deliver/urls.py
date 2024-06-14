@@ -23,8 +23,6 @@ from customer.views import Index, About, Order, OrderConfirmation, OrderPayConfi
 urlpatterns = [
     #update
     path('cart/', include('cart.urls')),
-
-
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('restaurant/', include('restaurant.urls')),

@@ -26,18 +26,26 @@ def cart_add(request):
 
         response = JsonResponse({'qty: ':cart_quantity})
         return response
+
+
+def cart_delete(request):
+    cart = Cart(request)
+    if request.POST.get('action') == 'post':
+        item_id = request.POST.get('item_id')
+        cart.delete(item=item_id)  
+        response = JsonResponse({'id': item_id})
+        return response
     
 
 
 
-def cart_delete(request):
-    pass
 def cart_update(request):
     cart = Cart(request)
     if request.POST.get('action') == 'post':
-        item_id = int(request.POST.get('item_id'))
-        item = get_object_or_404(MenuItem, id=item_id)
-        item_qty = int(request.POST.get('item_qty'))
+        item_id = request.POST.get('item_id')
+        if item_id is not None:
+            item_id = int(item_id)
+        item_qty = request.POST.get('item_qty')
 
         cart.update(item=item_id, quantity=item_qty)
 
