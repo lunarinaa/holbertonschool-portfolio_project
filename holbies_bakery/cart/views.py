@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from .cart import Cart
 from customer.models import MenuItem
 from django.http import JsonResponse
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from customer.models import MenuItem, OrderModel, OrderItem
 
 # Create your views here.
 def cart_summary(request):
@@ -26,6 +29,7 @@ def cart_add(request):
         # response = JsonResponse({'MenuItem: ':item.name})
 
         response = JsonResponse({'qty: ':cart_quantity})
+        messages.success(request,("Added to cart"))
         return response
 
 
@@ -52,3 +56,4 @@ def cart_update(request):
 
         response = JsonResponse({'qty': item_qty})
         return response
+    

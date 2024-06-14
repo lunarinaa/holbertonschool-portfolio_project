@@ -61,4 +61,9 @@ class Cart():
 
         self.session.modified = True
         return self.cart
+    
+    def clear(self):
+        if 'session_key' in self.session:
+            del self.session['session_key']
+            self.session.modified = True
         

@@ -4,6 +4,8 @@ from django.views import View
 from django.db.models import Q
 from django.core.mail import send_mail
 from .models import MenuItem, Category, OrderModel, OrderItem
+from cart.cart import Cart
+from django.contrib import messages
 
 def item(request, pk):
     item = MenuItem.objects.get(id=pk)
@@ -82,7 +84,7 @@ class Order(View):
 
             # Calculate the total price of the order
             order.price += order_item.menu_item.price * order_item.quantity
-            order.save()  # Save the updated order with the new price
+            order.save()  
 
             # Update item_data to include quantity
             item_data = {
@@ -176,3 +178,84 @@ class MenuSearch(View):
         }
 
         return render(request, 'customer/menu.html', context)
+
+
+# updated part 
+
+class Checkout(View):
+    def get(self, request, *args, **kwargs):
+        cart = Cart(request)
+        items = cart.get_items()
+        quantities = cart.get_quants()
+        cart_total = cart.cart_total()
+
+        context = {'items': items, 'quantities': quantities, 'cart_total': cart_total}
+        return render(request, 'customer/checkout.html', context)
+
+    def post(self, request, *args, **kwargs):
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        street = request.POST.get('street')
+        city = request.POST.get('city')
+        state = request.POST.get('country')
+        phone = request.POST.get('phone')
+
+        cart = Cart(request)
+        order_items = {'items': []}
+        price = 0
+
+        order = OrderModel.objects.create(
+            price=price,  # Initial price set to 0
+            name=name,
+            email=email,
+            street=street,
+            city=city,
+            state=state,
+            phone=phone,
+        )
+        # Process the cart items
+        for item in cart.get_items():
+            quantity = cart.cart[str(item.id)]
+
+            order_item = OrderItem.objects.create(
+                order=order,
+                menu_item=item,
+                quantity=quantity
+            )
+
+            order.price += item.price * quantity  # Calculate total price
+            order.save()
+
+            item_data = {
+                'id': item.pk,
+                'name': item.name,
+                'price': item.price,
+                'quantity': quantity
+            }
+            order_items['items'].append(item_data)
+
+        # Send confirmation email
+        body = (
+            "Thank you for your order! Your food will be delivered soon!\n"
+            f"Your total: {order.price}\n"
+            "Enjoy!"
+        )
+
+        send_mail(
+            'Thank You For Your Order!',
+            body,
+            'example@example.com',  # Replace with your actual email
+            [email],
+            fail_silently=False
+        )
+
+        # Clear the cart after a successful order
+        cart.clear()
+
+        # Pass order information to the confirmation page
+        context = {
+            'items': order_items['items'],
+            'price': order.price
+        }
+
+        return redirect('order-confirmation', pk=order.pk)

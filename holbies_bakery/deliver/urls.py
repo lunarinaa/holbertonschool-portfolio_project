@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from customer.views import Index, About, Order, OrderConfirmation, OrderPayConfirmation, Menu, MenuSearch, Contact
+from customer.views import Index, About, Order, OrderConfirmation, OrderPayConfirmation, Menu, MenuSearch, Contact, Checkout
 
 urlpatterns = [
     #update
@@ -36,5 +36,7 @@ urlpatterns = [
          name='order-confirmation'),
     path('payment-confirmation/', OrderPayConfirmation.as_view(),
          name='payment-confirmation'),
-    path('item/<int:pk>', views.item, name='item')
+    path('item/<int:pk>', views.item, name='item'),
+
+    path('cart/checkout/', Checkout.as_view(), name='checkout')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

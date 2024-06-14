@@ -43,8 +43,10 @@
                 action: 'post'
             },
             success: function(json){
-                console.log(json);
-                document.getElementById("cart_quantity").innerText = json.qty;
+                // console.log(json);
+                // document.getElementById("cart_quantity").innerText = json.qty;
+                location.reload();
+                
             },
             error: function(xhr, errmsg, err){
                 console.log('Error:', err);
