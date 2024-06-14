@@ -4,6 +4,7 @@
 {% load mathfilters %}
 {% block content %}
 <div class="container mt-5">
+    {% if cart_items %}
     <h2>Cart Summary</h2>
     <table class="table">
         <thead>
@@ -49,7 +50,11 @@
 
         </tbody>
     </table>
+    {% else %}
+    <h2> Your cart is empty </h2>
+    {% endif %}
 </div>
+
 
 <script>
     // update cart
