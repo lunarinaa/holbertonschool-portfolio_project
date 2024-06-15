@@ -3,6 +3,11 @@
 {% load static %}
 {% load mathfilters %}
 {% block content %}
+</br>
+</br></br>
+</br></br>
+</br></br>
+</br>
 <div class="container mt-5">
     {% if cart_items %}
     <h2>Cart Summary</h2>
@@ -36,8 +41,8 @@
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
-                        <button type="button" data-item_id="{{ item.id }}" class="btn btn-danger update-cart">Update</button>
-                        <button type="button" data-item_id="{{ item.id }}" class="btn btn-danger delete-item">Remove</button>
+                        <button type="button" data-item_id="{{ item.id }}" class="btn btn-outline-dark btn-sm update-cart">Update</button>
+                        <button type="button" data-item_id="{{ item.id }}" class="btn btn-outline-danger btn-sm  delete-item">Remove</button>
                     </div>
                 </td>
                 <td>${{ item.price }}</td>
@@ -50,9 +55,12 @@
                         <strong>Total: ${{ totals }}</strong>
                         <a href="{% url 'checkout' %}" class="btn btn-danger">Checkout</a>
                     </div>
+                    <br><br>
+                </br></br></br>
                 </td>
             </tr>
             <br><br>
+        </br></br></br>
 
         </tbody>
     </table>
