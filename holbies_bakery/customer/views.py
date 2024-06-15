@@ -264,6 +264,7 @@ class Checkout(View):
             'items': order_items['items'],
             'price': order.price
         }
+        return redirect('order-confirmation', pk=order.pk)
 
     
     
