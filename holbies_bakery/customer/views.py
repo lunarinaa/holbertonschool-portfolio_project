@@ -18,6 +18,13 @@ class Index(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'customer/index.html')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        menu_items = MenuItem.objects.all()  # Fetch all menu items
+        context['menu_items'] = menu_items
+        return context
+        return redirect('order-confirmation', pk=order.pk)
+
 
 class About(View):
     def get(self, request, *args, **kwargs):
@@ -258,4 +265,5 @@ class Checkout(View):
             'price': order.price
         }
 
-        return redirect('order-confirmation', pk=order.pk)
+    
+    

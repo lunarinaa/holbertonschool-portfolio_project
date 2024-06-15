@@ -13,3 +13,7 @@ def cart_quantity(request):
     return {
         'total_quantity': total_quantity
     }
+from customer.models import MenuItem
+
+def menu_items(request):
+    return {'menu_items': MenuItem.objects.all()}

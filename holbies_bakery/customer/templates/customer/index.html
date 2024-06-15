@@ -24,56 +24,33 @@
     <div class="text-center">
         <h1 class="welcome-heading">Welcome to Holbies' Bakery!</h1>
         <h2 class="welcome-subheading">Where every bite is a delight</h2>
-       
         <p class="description">
             Whether you're celebrating a special occasion or just satisfying your sweet tooth, we have something for everyone.
             From classic flavors to innovative creations, our menu is designed to cater to all tastes and preferences.
         </p>
-        
+        <div class="quote">
+            "You can't buy happiness, but you can buy cake. And that's kind of the same thing."
+        </div>
     </div>
     
     <!-- Slideshow -->
     <div id="bakeryCarousel" class="carousel slide mt-5" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
+            {% for item in menu_items %}
+            {% if forloop.counter0|divisibleby:3 %}  <!-- Check if the index is divisible by 3 -->
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
                 <div class="row">
+                    {% endif %}
                     <div class="col-md-4">
-                        <img src="{% static 'images/slide1.jpg' %}" class="d-block w-100" alt="...">
+                        <a href="{% url 'item' item.id %}">
+                            <img src="{{ item.image.url }}" class="d-block w-100 rounded" alt="{{ item.name }}">
+                        </a>
                     </div>
-                    <div class="col-md-4">
-                        <img src="{% static 'images/slide2.jpg' %}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="col-md-4">
-                        <img src="{% static 'images/slide3.jpg' %}" class="d-block w-100" alt="...">
-                    </div>
+                    {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}  <!-- Check if the next index will be divisible by 3 or it's the last item -->
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="{% static 'images/slide4.jpg' %}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="col-md-4">
-                        <img src="{% static 'images/slide5.jpg' %}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="col-md-4">
-                        <img src="{% static 'images/slide6.jpg' %}" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="{% static 'images/slide7.jpg' %}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="col-md-4">
-                        <img src="{% static 'images/slide8.jpg' %}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="col-md-4">
-                        <img src="{% static 'images/slide9.jpg' %}" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-            </div>
+            {% endif %}
+            {% endfor %}
         </div>
         <a class="carousel-control-prev" href="#bakeryCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -83,9 +60,6 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
-    <div class="quote">
-        "You can't buy happiness, but you can buy cake. And that's kind of the same thing."
     </div>
 </div>
 
