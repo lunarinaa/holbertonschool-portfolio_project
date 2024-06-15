@@ -1,0 +1,42 @@
+body {
+    color: #333;
+}
+.content-container {
+    margin-left: 45%;
+    padding: 2rem;
+    max-width: 50%;
+}
+.welcome-heading {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #b22222;
+    margin-bottom: 1rem;
+}
+.welcome-subheading {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+.description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #444;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+}
+.highlight {
+    font-weight: bold;
+    color: #b22222;
+}
+.quote {
+    font-style: italic;
+    color: #777;
+    margin-top: 2rem;
+    border-left: 4px solid #b22222;
+    padding-left: 1rem;
+}
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
