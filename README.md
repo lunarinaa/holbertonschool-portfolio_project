@@ -5,20 +5,6 @@
 Holbies Bakery is a food-ordering web application focusing on cakes and bakery items. Customers can browse through a variety of products, place orders, and receive deliveries. The backend is powered by Django Framework, Python, while the frontend uses HTML, CSS, and JavaScript.
 
 ## Project Structure
-holbies_bakery/
-├── cart/
-├── customer/
-├── deliver/
-├── media/
-├── restaurant/
-├── templates/
-├── db_backup.json
-├── db.sqlite3
-├── manage.py
-├── .gitignore
-├── README.md
-└── requirements.txt
-
 
 - `cart/`: Contains the cart application managing items in the cart.
 - `customer/`: Contains customer-related functionalities like registration and profile management.
@@ -44,7 +30,7 @@ holbies_bakery/
 
 - Python 3.12.1
 - Django 4.2
-- MySQL (for production)
+
 
 ### Setup
 
