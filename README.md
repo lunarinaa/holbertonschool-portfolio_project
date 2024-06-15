@@ -64,5 +64,29 @@ Holbies Bakery is a food-ordering web application focusing on cakes and bakery i
 
    Open your web browser and go to http://localhost:8000
 
+## Landing Page Screenshot
+
+Here is a screenshot of our landing page:
+
+![Landing Page](screenshots/landing_page.png)
+
+## Contributing
+- Fork the repository.
+- Create a new branch (git checkout -b feature-branch).
+- Make your changes and commit (git commit -m 'Add some feature').
+- Push to the branch (git push origin feature-branch).
+- Open a Pull Request.
+
+## Authors 
+- Aydan Jafarli
+- Fuad Mammadov
+- Gulnar Rahimova
+- Tuzala Imanova
+
+## Contact
+
+For any inquiries or issues, please contact the authors.
+
+
 
 
