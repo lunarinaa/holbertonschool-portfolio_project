@@ -65,8 +65,22 @@
         </tbody>
     </table>
     {% else %}
-    <h2> Your cart is empty </h2>
-    {% endif %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 text-center">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h2>Oops..</h2>
+                </div>
+                <div class="card-body">
+                    <img src="{% static 'images/cart-59-512.png' %}" alt="cart is empty" class="img-fluid" width="150" height="150">
+                    <h4>your cart is empty</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
 </div>
 
 

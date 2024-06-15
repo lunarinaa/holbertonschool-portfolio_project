@@ -25,15 +25,16 @@
         <a class="btn btn-dark-red nav-link" href="{% url 'order' %}">Quick Order</a>
       </li>
     </ul>
-    <form class="d-flex">
-      <a class="btn btn-outline-white d-flex align-items-center" href="{% url 'cart_summary' %}">
-          <i class="bi bi-cart3 me-1"></i> 
-          Cart
-          <span class="badge outline-light text-white ms-2 rounded-pill" id="cart_quantity"> 
-              {{ total_quantity }}
-          </span>
-      </a>
-  </form>
+  <form class="d-flex">
+    <a class="btn text-white d-flex align-items-center custom-btn" href="{% url 'cart_summary' %}">
+        <i class="bi bi-cart3 me-1"></i> 
+        Cart
+        <span class="badge outline-light text-white ms-2 rounded-pill" id="cart_quantity"> 
+            {{ total_quantity }}
+        </span>
+    </a>
+</form>
+
   
   </div>
 </nav>
