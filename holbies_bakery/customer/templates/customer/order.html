@@ -1,10 +1,6 @@
 {% extends 'customer/base.html' %}
-
 {% block content %}
-
-</br></br>
-</br>
-
+<br><br><br>
 <div class="container mb-5">
     <div class="row justify-content-center mt-1">
         <div class="col-md-12 col-sm-12 p-4">
@@ -12,13 +8,13 @@
                 {% csrf_token %}
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-6 col-sm-12 text-center">
-                        <h1>Place an order</h1>
+                        <h1>Place an Order</h1>
                     </div>
                 </div>
 
                 <!-- Desserts Section -->
                 <div class="pt-5">
-                    <button class="btn btn-danger btn-block mb-3" type="button" data-toggle="collapse" data-target="#dessertsCollapse" aria-expanded="false" aria-controls="dessertsCollapse">
+                    <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#dessertsCollapse" aria-expanded="false" aria-controls="dessertsCollapse">
                         Desserts
                     </button>
                     <div class="collapse" id="dessertsCollapse">
@@ -27,17 +23,17 @@
                                 {% for dessert in desserts %}
                                 <div class="row mt-4">
                                     <div class="col-md-2 col-sm-12">
-                                        <img class="rounded" src="{{ dessert.image.url }}" width="100" height="120"/>
+                                        <img class="rounded" src="{{ dessert.image.url }}" width="100" height="120" alt="{{ dessert.name }}"/>
                                     </div>
                                     <div class="col-md-8 col-sm-12">
                                         <div class="d-flex flex-column">
                                             <div class="form-group form-check">
-                                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}">
-                                                <label class="form-check-label">{{ dessert.name }} - ${{ dessert.price }}</label>
+                                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}" id="dessert_{{ dessert.pk }}">
+                                                <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }} - ${{ dessert.price }}</label>
                                             </div>
                                             <div class="form-group ml-3 mt-2 quantity-selector">
                                                 <label for="quantity_{{ dessert.pk }}">Quantity:</label>
-                                                <input type="number" name="quantity_{{ dessert.pk }}" class="form-control" value="0" min="0">
+                                                <input type="number" name="quantity_{{ dessert.pk }}" class="form-control" value="0" min="0" id="quantity_{{ dessert.pk }}">
                                             </div>
                                         </div>
                                     </div>
@@ -51,8 +47,8 @@
 
                 <!-- Drinks Section -->
                 <div class="pt-5">
-                    <button class="btn btn-danger btn-block mb-3" type="button" data-toggle="collapse" data-target="#drinksCollapse" aria-expanded="false" aria-controls="drinksCollapse">
-                         Drinks
+                    <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#drinksCollapse" aria-expanded="false" aria-controls="drinksCollapse">
+                        Drinks
                     </button>
                     <div class="collapse" id="drinksCollapse">
                         <div class="card">
@@ -60,17 +56,17 @@
                                 {% for drink in drinks %}
                                 <div class="row mt-4">
                                     <div class="col-md-2 col-sm-12">
-                                        <img class="rounded" src="{{ drink.image.url }}" width="100" height="120"/>
+                                        <img class="rounded" src="{{ drink.image.url }}" width="100" height="120" alt="{{ drink.name }}"/>
                                     </div>
                                     <div class="col-md-8 col-sm-12">
                                         <div class="d-flex flex-column">
                                             <div class="form-group form-check">
-                                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}">
-                                                <label class="form-check-label">{{ drink.name }} - ${{ drink.price }}</label>
+                                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}" id="drink_{{ drink.pk }}">
+                                                <label class="form-check-label" for="drink_{{ drink.pk }}">{{ drink.name }} - ${{ drink.price }}</label>
                                             </div>
                                             <div class="form-group ml-3 mt-2 quantity-selector">
                                                 <label for="quantity_{{ drink.pk }}">Quantity:</label>
-                                                <input type="number" name="quantity_{{ drink.pk }}" class="form-control" value="0" min="0">
+                                                <input type="number" name="quantity_{{ drink.pk }}" class="form-control" value="0" min="0" id="quantity_{{ drink.pk }}">
                                             </div>
                                         </div>
                                     </div>
@@ -85,43 +81,43 @@
                 <!-- Customer Information Section -->
                 <div class="form-group pt-3">
                     <label for="name">Full Name</label>
-                    <input required class="form-control" type="text" placeholder="Your Name" name="name" />
+                    <input required class="form-control" type="text" placeholder="Your Name" name="name" id="name" />
                 </div>
 
                 <div class="form-group pt-3">
                     <label for="email">Email Address</label>
-                    <input required class="form-control" type="email" placeholder="example@example.com" name="email" />
+                    <input required class="form-control" type="email" placeholder="example@example.com" name="email" id="email" />
                 </div>
 
                 <div class="form-group pt-3">
                     <label for="street">Street Address</label>
-                    <input required class="form-control" type="text" placeholder="Neftchiler ave 29" name="street" />
+                    <input required class="form-control" type="text" placeholder="Neftchiler ave 29" name="street" id="street" />
                 </div>
 
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group pt-3">
                             <label for="city">City</label>
-                            <input required class="form-control" type="text" placeholder="Baku" name="city" />
+                            <input required class="form-control" type="text" placeholder="Baku" name="city" id="city" />
                         </div>
                     </div>
 
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group pt-3">
                             <label for="country">Country</label>
-                            <input required class="form-control" type="text" placeholder="Azerbaijan" name="country" />
+                            <input required class="form-control" type="text" placeholder="Azerbaijan" name="country" id="country" />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group pt-3">
                             <label for="phone">Phone</label>
-                            <input required class="form-control" type="text" placeholder="012 345 67 89" name="phone" />
+                            <input required class="form-control" type="text" placeholder="012 345 67 89" name="phone" id="phone" />
                         </div>
                     </div>
                 </div>
 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#submitModal">
+                <button type="button" class="btn btn-danger mt-4" data-toggle="modal" data-target="#submitModal">
                   Submit Order!
                 </button>
 
@@ -142,7 +138,6 @@
                     </div>
                   </div>
                 </div>
-
             </form>
         </div>
     </div>
@@ -152,5 +147,24 @@
 <style>
     .quantity-selector input {
         max-width: 80px;
+    }
+    .form-check-label {
+        font-weight: 600;
+    }
+    .modal-content {
+        background-color: #f8f9fa;
+    }
+    .custom-btn {
+        background: linear-gradient(45deg, #f44336, #e57373);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background 0.3s ease;
+    }
+    .custom-btn:hover {
+        background: linear-gradient(45deg, #d32f2f, #c62828);
     }
 </style>

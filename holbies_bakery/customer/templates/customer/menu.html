@@ -2,8 +2,7 @@
 
 {% block content %}
 
-</br></br>
-</br>
+
 </br>
 </br>
 </br>
@@ -11,7 +10,6 @@
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-6 col-sm-12 text-center">
-            <h1>What do we offer</h1>
         </div>
     </div>
 
@@ -19,17 +17,19 @@
         <div class="col-md-8 col-sm-12 text-center">
             <form method="GET" action="{% url 'menu-search' %}">
                 <div class="md-form mt-0 active-cyan-2">
-                    <input class="form-control" name="q" type="text" placeholder="Search Our Menu" aria-label="Search" value="{{ request.GET.q }}">
+                    <input class="form-control" name="q" type="text" placeholder="Search" aria-label="Search" value="{{ request.GET.q }}">
                 </div>
             </form>
         </div>
     </div>
+</br></br>
+</br>
 
     <div class="row justify-content-center">
         {% for item in menu_items %}
         <div class="col-md-4 col-sm-12 text-center mb-5">
             <div class="card-footer p-4 pt-0 border-top-0 bg transparent">
-                <img class="rounded" src="{{ item.image.url }}" width="300" height="320">
+                <img class="rounded" src="{{ item.image.url }}" width="300" height="300">
                 <h6 class="mt-2"><strong>{{ item.name }} </strong></h6>
             <p><h7> ${{ item.price }}</h7></p>
                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'item' item.id %}"> View</a></div>
