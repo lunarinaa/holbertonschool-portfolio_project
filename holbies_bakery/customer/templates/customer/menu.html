@@ -2,11 +2,74 @@
 
 {% block content %}
 
+</br>
+</br>
+</br>
+<style>
+    body {
+        background: url("../../static/images/_b5d1e7fe-3144-4a4c-81c1-66c4116c232e.jpeg");
+        background-size: cover;
+    }
+    .blur-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(10px);
+        z-index: -1;
+    }
+    .search-card {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .search-input {
+        border: 2px solid #ced4da;
+        border-radius: 50px;
+        padding: 10px 20px;
+        width: 100%;
+        font-size: 16px;
+        transition: border-color 0.3s;
+    }
+    .search-input:focus {
+        border-color: #80bdff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
 
-</br>
-</br>
-</br>
+    .menu-card {
+        background: white;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.2s;
+    }
+    .menu-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .menu-card img {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        object-fit: cover;
+    }
+    .menu-card h6 {
+        font-size: 1.25rem;
+        margin-top: 15px;
+    }
+    .menu-card p {
+        font-size: 1rem;
+        margin: 10px 0;
+    }
+    .menu-card .btn {
+        margin-top: 10px;
+    }
+</style>
 
+<div class="blur-background"></div>
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-6 col-sm-12 text-center">
@@ -15,31 +78,33 @@
 
     <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-12 text-center">
-            <form method="GET" action="{% url 'menu-search' %}">
-                <div class="md-form mt-0 active-cyan-2">
-                    <input class="form-control" name="q" type="text" placeholder="Search" aria-label="Search" value="{{ request.GET.q }}">
-                </div>
-            </form>
+            <div class="search-card">
+                <form method="GET" action="{% url 'menu-search' %}">
+                    <div class="md-form mt-0 active-cyan-2">
+                        <input class="form-control search-input" name="q" type="text" placeholder="Search" aria-label="Search" value="{{ request.GET.q }}">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </br></br>
 </br>
 
-    <div class="row justify-content-center">
-        {% for item in menu_items %}
-        <div class="col-md-4 col-sm-12 text-center mb-5">
-            <div class="card-footer p-4 pt-0 border-top-0 bg transparent">
-                <img class="rounded" src="{{ item.image.url }}" width="300" height="300">
-                <h6 class="mt-2"><strong>{{ item.name }} </strong></h6>
-            <p><h7> ${{ item.price }}</h7></p>
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'item' item.id %}"> View</a></div>
+<div class="row justify-content-center">
+    {% for item in menu_items %}
+    <div class="col-md-4 col-sm-12 text-center mb-5">
+        <div class="menu-card">
+            <img class="rounded" src="{{ item.image.url }}" width="300" height="300">
+            <div class="p-4">
+                <h6><strong>{{ item.name }} </strong></h6>
+                <p> ${{ item.price }}</p>
+                <a class="btn btn-outline-dark mt-auto" href="{% url 'item' item.id %}"> View</a>
             </div>
-            
         </div>
+    </div>
         {% endfor %}
     </div>
 </div>
 <br><br><br><br>
-
 
 {% endblock content %}
