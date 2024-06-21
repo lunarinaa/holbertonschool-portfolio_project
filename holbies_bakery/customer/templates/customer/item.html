@@ -2,6 +2,9 @@
 {% load static %}
 {% block content %}
 <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
     body{
         background:url("../../static/images/_b5d1e7fe-3144-4a4c-81c1-66c4116c232e.jpeg");
         background-size: cover;
@@ -10,7 +13,24 @@
     }
     .card-wrapp{
         background-color: rgba(108, 108, 108, 0.613);
-        backdrop-filter: blur(15px); /* Adjust blur amount as needed */
+        backdrop-filter: blur(15px); 
+        border-radius: 12px;
+        transition: transform 0.5s cubic-bezier(.33, .72, .602, .919);
+        /* Adjust blur amount as needed */
+    }
+    .card-title{
+        font-family: 'Pacifico', cursive;
+        font-size: 1.5rem;
+    }
+    .img-fluid{
+        height: 100%;
+        width:100%;
+        object-fit: cover;
+        border-radius: 12px;
+
+    }
+    .card-wrapp:hover {
+        transform: scale(1.1);
     }
 </style>
 <div class="d-flex justify-content-center align-items-center min-vh-100">
