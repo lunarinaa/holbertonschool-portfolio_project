@@ -1,150 +1,72 @@
 {% extends 'customer/base.html' %}
 {% block content %}
-<br><br><br>
-<div class="container mb-5">
-    <div class="row justify-content-center mt-1">
-        <div class="col-md-12 col-sm-12 p-4">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="row justify-content-center mt-5">
-                    <div class="col-md-6 col-sm-12 text-center">
-                        <h1>Place an Order</h1>
-                    </div>
-                </div>
-
-                <!-- Desserts Section -->
-                <div class="pt-5">
-                    <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#dessertsCollapse" aria-expanded="false" aria-controls="dessertsCollapse">
-                        Desserts
-                    </button>
-                    <div class="collapse" id="dessertsCollapse">
-                        <div class="card">
-                            <div class="card-body">
-                                {% for dessert in desserts %}
-                                <div class="row mt-4">
-                                    <div class="col-md-2 col-sm-12">
-                                        <img class="rounded" src="{{ dessert.image.url }}" width="100" height="120" alt="{{ dessert.name }}"/>
-                                    </div>
-                                    <div class="col-md-8 col-sm-12">
-                                        <div class="d-flex flex-column">
-                                            <div class="form-group form-check">
-                                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}" id="dessert_{{ dessert.pk }}">
-                                                <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }} - ${{ dessert.price }}</label>
-                                            </div>
-                                            <div class="form-group ml-3 mt-2 quantity-selector">
-                                                <label for="quantity_{{ dessert.pk }}">Quantity:</label>
-                                                <input type="number" name="quantity_{{ dessert.pk }}" class="form-control" value="0" min="0" id="quantity_{{ dessert.pk }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr />
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Drinks Section -->
-                <div class="pt-5">
-                    <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#drinksCollapse" aria-expanded="false" aria-controls="drinksCollapse">
-                        Drinks
-                    </button>
-                    <div class="collapse" id="drinksCollapse">
-                        <div class="card">
-                            <div class="card-body">
-                                {% for drink in drinks %}
-                                <div class="row mt-4">
-                                    <div class="col-md-2 col-sm-12">
-                                        <img class="rounded" src="{{ drink.image.url }}" width="100" height="120" alt="{{ drink.name }}"/>
-                                    </div>
-                                    <div class="col-md-8 col-sm-12">
-                                        <div class="d-flex flex-column">
-                                            <div class="form-group form-check">
-                                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}" id="drink_{{ drink.pk }}">
-                                                <label class="form-check-label" for="drink_{{ drink.pk }}">{{ drink.name }} - ${{ drink.price }}</label>
-                                            </div>
-                                            <div class="form-group ml-3 mt-2 quantity-selector">
-                                                <label for="quantity_{{ drink.pk }}">Quantity:</label>
-                                                <input type="number" name="quantity_{{ drink.pk }}" class="form-control" value="0" min="0" id="quantity_{{ drink.pk }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr />
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Customer Information Section -->
-                <div class="form-group pt-3">
-                    <label for="name">Full Name</label>
-                    <input required class="form-control" type="text" placeholder="Your Name" name="name" id="name" />
-                </div>
-
-                <div class="form-group pt-3">
-                    <label for="email">Email Address</label>
-                    <input required class="form-control" type="email" placeholder="example@example.com" name="email" id="email" />
-                </div>
-
-                <div class="form-group pt-3">
-                    <label for="street">Street Address</label>
-                    <input required class="form-control" type="text" placeholder="Neftchiler ave 29" name="street" id="street" />
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group pt-3">
-                            <label for="city">City</label>
-                            <input required class="form-control" type="text" placeholder="Baku" name="city" id="city" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group pt-3">
-                            <label for="country">Country</label>
-                            <input required class="form-control" type="text" placeholder="Azerbaijan" name="country" id="country" />
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group pt-3">
-                            <label for="phone">Phone</label>
-                            <input required class="form-control" type="text" placeholder="012 345 67 89" name="phone" id="phone" />
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-danger mt-4" data-toggle="modal" data-target="#submitModal">
-                  Submit Order!
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="submitModalLabel">Submit Your Order!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Go Back</button>
-                        <button type="submit" class="btn btn-danger">Place Order!</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-{% endblock content %}
-
 <style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    body{
+        background:linear-gradient(135deg, #ffffff90 0%, #ff242486 100%);
+        background-size: cover;
+        font-family:"Poppins", sans-serif;
+    }
+    .card {
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card-body {
+        background: linear-gradient(135deg, #ffffff 0%, #fda085 100%);
+        border-radius: 10px;
+        padding: 20px;
+    }
+    .rounded {
+        border-radius: 10px;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+    .rounded:hover {
+        transform: scale(1.1);
+    }
+    .dessert-info {
+        color: #fff;
+    }
+    .form-check-label {
+        margin-left: 5px;
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+    .form-check-input {
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        background-color: #fff;
+        border: 2px solid #fda085;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .form-check-input:checked {
+        background-color: #fda085;
+        border-color: #f6d365;
+    }
+    .quantity-selector label {
+        font-weight: bold;
+    }
+    .quantity-selector input {
+        border-radius: 5px;
+        border: none;
+        padding: 5px;
+        margin-top: 5px;
+        width: 60px;
+        text-align: center;
+        background-color: #fff;
+        border: 2px solid #fda085;
+        transition: all 0.3s;
+    }
+    .quantity-selector input:focus {
+        border-color: #f6d365;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    hr {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
     .quantity-selector input {
         max-width: 80px;
     }
@@ -167,4 +89,183 @@
     .custom-btn:hover {
         background: linear-gradient(45deg, #d32f2f, #c62828);
     }
+    .flex {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    .flex .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .pt-5 {
+        padding-top: 5rem !important;
+    }
+    
+    label {
+            font-weight: bold; /* Bold labels */
+        }
+        .btn-submit {
+            background-color: #dc3545; /* Red submit button */
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 10px 20px; /* Padding inside button */
+            font-size: 18px; /* Larger font size */
+            border-radius: 5px; /* Rounded corners */
+        }
+        .btn-submit:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+
 </style>
+<br><br><br>
+<div class="container mb-5">
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-12 col-sm-12 p-4">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-6 col-sm-12 text-center">
+                        <h1>Place an Order</h1>
+                    </div>
+                </div>
+
+                <!-- Desserts Section -->
+                <div class="flex">
+                    <div class="pt-5" style="width: 100%;">
+                        <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#dessertsCollapse" aria-expanded="false" aria-controls="dessertsCollapse">
+                            Desserts
+                        </button>
+                        <div class="collapse" id="dessertsCollapse">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% for dessert in desserts %}
+                                    <div class="row mt-4">
+                                        <div class="col-md-2 col-sm-12">
+                                            <img class="rounded" src="{{ dessert.image.url }}" width="100" height="120" alt="{{ dessert.name }}"/>
+                                        </div>
+                                        <div class="col-md-8 col-sm-12">
+                                            <div class="d-flex flex-column">
+                                                <div class="form-group form-check">
+                                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}" id="dessert_{{ dessert.pk }}">
+                                                    <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }} - ${{ dessert.price }}</label>
+                                                </div>
+                                                <div class="form-group ml-3 mt-2 quantity-selector">
+                                                    <label for="quantity_{{ dessert.pk }}">Quantity:</label>
+                                                    <input type="number" name="quantity_{{ dessert.pk }}" class="form-control" value="0" min="0" id="quantity_{{ dessert.pk }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drinks Section -->
+                    <div class="pt-5"  style="width: 100%;">
+                        <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#drinksCollapse" aria-expanded="false" aria-controls="drinksCollapse">
+                            Drinks
+                        </button>
+                        <div class="collapse" id="drinksCollapse">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% for drink in drinks %}
+                                    <div class="row mt-4">
+                                        <div class="col-md-2 col-sm-12">
+                                            <img class="rounded" src="{{ drink.image.url }}" width="100" height="120" alt="{{ drink.name }}"/>
+                                        </div>
+                                        <div class="col-md-8 col-sm-12">
+                                            <div class="d-flex flex-column">
+                                                <div class="form-group form-check">
+                                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}" id="drink_{{ drink.pk }}">
+                                                    <label class="form-check-label" for="drink_{{ drink.pk }}">{{ drink.name }} - ${{ drink.price }}</label>
+                                                </div>
+                                                <div class="form-group ml-3 mt-2 quantity-selector">
+                                                    <label for="quantity_{{ drink.pk }}">Quantity:</label>
+                                                    <input type="number" name="quantity_{{ drink.pk }}" class="form-control" value="0" min="0" id="quantity_{{ drink.pk }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Information Section -->
+                <div class="container" style="margin-top: 50px;">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-1000">
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input required class="form-control" type="text" placeholder="Your Name" name="name" id="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input required class="form-control" type="email" placeholder="example@example.com" name="email" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="street">Street Address</label>
+                                    <input required class="form-control" type="text" placeholder="Neftchiler ave 29" name="street" id="street">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="city">City</label>
+                                            <input required class="form-control" type="text" placeholder="Baku" name="city" id="city">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="country">Country</label>
+                                            <input required class="form-control" type="text" placeholder="Azerbaijan" name="country" id="country">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="phone">Phone</label>
+                                            <input required class="form-control" type="text" placeholder="012 345 67 89" name="phone" id="phone">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-submit btn-block mt-4" data-toggle="modal" data-target="#submitModal">
+                                        Submit Order!
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="submitModalLabel">Submit Your Order!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Go Back</button>
+                                <button type="submit" class="btn btn-danger">Place Order!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
