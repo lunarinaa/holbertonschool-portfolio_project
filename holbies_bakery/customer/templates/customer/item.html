@@ -1,8 +1,20 @@
 {% extends 'customer/base.html' %}
 {% load static %}
 {% block content %}
+<style>
+    body{
+        background:url("../../static/images/_b5d1e7fe-3144-4a4c-81c1-66c4116c232e.jpeg");
+        background-size: cover;
+        font-family:"Poppins", sans-serif;
+        color:white;
+    }
+    .card-wrapp{
+        background-color: rgba(108, 108, 108, 0.613);
+        backdrop-filter: blur(15px); /* Adjust blur amount as needed */
+    }
+</style>
 <div class="d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card p-4" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+    <div class="card-wrapp p-4" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
         <div class="row g-0">
             <div class="col-md-4">
                 <img src="{{ item.image.url }}" class="img-fluid" alt="item">
@@ -13,17 +25,23 @@
                     <p class="card-text">{{ item.description }}</p>
                     <div class="mb-3">
                         <div class="d-flex align-items-center">
-                            <select class="form-select form-select-lg me-2" aria-label="Default select example" id="qty-cart" style="width: auto;">
-                                <option selected></option>
+                            <select style="height:30px; /* Adjust width as needed */
+                            font-size: 16px; /* Adjust font size as needed */
+                            background-color: #f8f9fa; /* Custom background color */
+                            color: #495057; /* Custom text color */
+                            border: 1px solid #ced4da; /* Custom border color */
+                            border-radius: .25rem; " class="form-select form-select-lg me-2" aria-label="Default select example" id="qty-cart" style="width: auto;">
+                                <option selected>Q</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-                            <button type="button" value="{{ item.id }}" class="add-cart-btn btn btn-outline-dark btn-sm update-cart">Add to Cart</button>
-                            <a href="{% url 'cart_summary' %}" class="btn btn-outline-dark btn-sm update-cart me-2">Go to cart</a>
-                    <a href="{% url 'menu' %}" class="btn btn-outline-dark btn-sm update-cart">Back to menu</a>
+                            <button type="button" value="{{ item.id }}" class="add-cart-btn btn btn-outline-light btn-sm update-cart">Add to Cart</button>
+<a href="{% url 'cart_summary' %}" class="btn btn-outline-light btn-sm update-cart me-2" style="color: aliceblue;">Go to cart</a>
+<a href="{% url 'menu' %}" class="btn btn-outline-light btn-sm update-cart">Back to menu</a>
+
                         </div>
                     </div>
                     
