@@ -6,16 +6,62 @@
 </br>
 </br></br>
 </br></br>
-</br></br>
 </br>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    body{
+        background:url(../static/images/_52dd8fa0-4119-41de-81fb-02a2029299b5.jpeg);
+        background-size: cover;
+        font-family:"Poppins", sans-serif;
+    }
+    .container{
+        background-color: rgba(255, 255, 255, 0.741);
+        backdrop-filter: blur(30px); 
+        border-radius: 12px;
+        font-weight: 400; /* Change font-weight here */
+        font-size: 18px;  /* Change font-size here */
+    }
+    .rounded {
+        border-radius: 10px;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+    .rounded:hover {
+        transform: scale(1.1);
+    }
+    h2 {
+        font-weight: 700; /* Change font-weight here */
+        font-size: 32px;
+        color:#a40c0c  /* Change font-size here */
+    }
+    .table th, .table td {
+        font-weight: 400; /* Change font-weight here */
+        font-size: 16px;  /* Change font-size here */
+    }
+    .btn {
+        font-weight: 500; /* Change font-weight here */
+        font-size: 14px;  /* Change font-size here */
+    }
+    .card h2 {
+        font-weight: 700; /* Change font-weight here */
+        font-size: 24px;  /* Change font-size here */
+    }
+    .card h4 {
+        font-weight: 500; /* Change font-weight here */
+        font-size: 18px;  /* Change font-size here */
+    }
+</style>
+
 <div class="container mt-5">
     {% if cart_items %}
-    <h2>Cart Summary</h2>
+    <h2 style="padding-top:50px">Cart Summary</h2>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Image</th>
-                <th scope="col">Item</th>
+                <th scope="col">Name</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
             </tr>
@@ -23,8 +69,8 @@
         <tbody>
             {% for item in cart_items %}
             <tr>
-                <td><img src="{{ item.image.url }}" alt="{{ item.name }}" width="100"></td>
-                <td>{{ item.name }}</td>
+                <td><img src="{{ item.image.url }}" alt="{{ item.name }}" class="rounded" width="150"></td>
+                <td style="font-family: 'Pacifico', cursive; font-size: 20px;">{{ item.name }}</td>
                 <td>
                     <div class="d-flex align-items-center">
                         <select class="form-select me-2" aria-label="Default select example" id="select{{item.id}}" style="width: auto;">
@@ -45,7 +91,7 @@
                         <button type="button" data-item_id="{{ item.id }}" class="btn btn-outline-danger btn-sm  delete-item">Remove</button>
                     </div>
                 </td>
-                <td>${{ item.price }}</td>
+                <td style="font-weight: 600;">${{ item.price }}</td>
             </tr>
             {% endfor %}
 
@@ -66,12 +112,11 @@
     </table>
     {% else %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <div class="container mt-5">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" >
             <div class="col-md-6 text-center">
-                <div class="card border-danger">
+                <div class="card border-danger" style=" background-color: rgba(255, 255, 255, 0.741);">
                     <div class="card-header text-white" style="background-color: #a40c0c;">
-                        <h2>Oops..</h2>
+                        <h2 style="color: aliceblue;">Oops..</h2>
                     </div>
                     <div class="card-body">
                         <svg xmlns="http://www.w3.org/2000/svg" width="250" height="200" fill="#a40c0c" class="bi bi-basket2" viewBox="0 0 16 16">

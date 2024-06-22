@@ -2,7 +2,6 @@
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font: inherit;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .card-header {
@@ -13,7 +12,6 @@
 .card-body h4 {
     margin-top: 20px;
     color: #a40c0c;
-    font-family: 'Courier New', Courier, monospace;
     font-size: x-large;
 }
 
