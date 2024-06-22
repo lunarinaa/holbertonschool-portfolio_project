@@ -11,6 +11,23 @@
     <p>{{ item.name }} - Quantity: {{ quantity }}</p>
 {% endfor %}
 
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    body{
+        background:url(../../static/images/_5cea8b9d-065e-49e9-ba54-fbb101555109.jpeg);
+        background-size: cover;
+        font-family:"Poppins", sans-serif;
+        color: white;
+    }
+    .container{
+        background-color: rgba(152, 152, 152, 0.577);
+        backdrop-filter: blur(20px); 
+        border-radius: 12px;
+        font-weight: 400; /* Change font-weight here */
+        font-size: 18px;  /* Change font-size here */
+    }
+</style>
+
 <div class="container mb-5">
     <div class="row justify-content-center mt-1">
         <div class="col-md-12 col-sm-12 p-4">
