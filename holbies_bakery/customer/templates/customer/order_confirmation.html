@@ -1,28 +1,23 @@
 {% extends 'customer/base.html' %}
 
 {% block content %}
-</br>
-</br></br>
-</br></br>
-</br></br>
-</br></br>
-</br>
+<br><br><br><br><br><br><br><br><br><br>
 <div class="container mb-5">
     <div class="row justify-content-center mt-1">
         <div class="col-md-8 col-sm-12 p-4 text-center">
-            <h1 class="mb-4">Order Submitted!</h1>
-            <p class="mb-4">You will receive a confirmation email soon.</p>
-            <a href="{% url 'index' %}" class="btn btn-danger mb-3">Go to the homepage</a>
-            <a href="{% url 'order' %}" class="btn btn-danger mb-3">Place another order</a>
+            <h1 class="order-title mb-4">Order Submitted!</h1>
+            <p class="order-description mb-4">You will receive a confirmation email soon.</p>
+            <a href="{% url 'index' %}" class="btn btn-custom mb-3">Go to the homepage</a>
+            <a href="{% url 'order' %}" class="btn btn-custom mb-3">Place another order</a>
         </div>
     </div>
 
     <div class="row justify-content-center mt-5">
         <div class="col-md-8 col-sm-12 text-center">
-            <h3 class="pb-3">Order Summary</h3>
+            <h3 class="order-summary-title pb-3">Order Summary</h3>
             <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead class="thead-dark">
+                <table class="table table-bordered order-table">
+                    <thead class="thead-custom">
                         <tr>
                             <th scope="col">Item</th>
                             <th scope="col">Quantity</th>
@@ -40,7 +35,7 @@
                     </tbody>
                 </table>
             </div>
-            <p class="font-weight-bold pt-4">Total to be payed: ${{ price }}</p>
+            <p class="font-weight-bold pt-4">Total to be paid: ${{ price }}</p>
         </div>
     </div>
 
@@ -56,6 +51,102 @@
         </div>
     </div>
 </div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;700&display=swap');
+
+    body {
+        font-family: 'Quicksand', sans-serif;
+        background: linear-gradient(135deg, #ffffff90 0%, #ff242486 100%);
+        margin: 0;
+    }
+    .order-title {
+        font-family: 'Pacifico', cursive;
+        color: #da3853;
+        font-weight: bold;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        animation: fadeInDown 1s ease-out;
+    }
+    .order-description {
+        font-family: 'Quicksand', sans-serif;
+        color: #34495e;
+        font-size: 1.25rem;
+        font-style: italic;
+        margin-bottom: 2rem;
+        animation: fadeInDown 1s ease-out;
+    }
+    .btn-custom {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #A40C0C 0%, #da3853 100%);
+        color: #FFFFFF;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .btn-custom:hover {
+        background: linear-gradient(135deg, #da3853 0%, #A40C0C 100%);
+    }
+    .order-summary-title {
+        font-family: 'Pacifico', cursive;
+        color: #da3853;
+        font-size: 2rem;
+        border-bottom: 2px solid #6d6666;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        animation: fadeInDown 1s ease-out;
+    }
+    .order-table {
+        border: 2px solid #da3853;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    .thead-custom {
+        background-color: #fff8f8;
+        color: #da3853;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 1.1rem;
+    }
+    .order-table th, .order-table td {
+        font-family: 'Quicksand', sans-serif;
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.1rem;
+        color: #2C3E50;
+        transition: background-color 0.3s ease;
+    }
+    .order-table tr:nth-child(even) {
+        background-color: #FFE6E6;
+    }
+    .order-table tr:hover td {
+        background-color: #FFDADA;
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
 
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 <script>

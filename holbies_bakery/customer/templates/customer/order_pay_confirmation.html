@@ -1,18 +1,67 @@
 {% extends 'customer/base.html' %}
 
 {% block content %}
-</br>
-</br></br>
-</br></br>
-</br></br>
-</br></br>
-</br>
+<br><br><br><br><br><br><br><br><br><br>
 <div class="container mb-5">
     <div class="row justify-content-center mt-1">
         <div class="col-md-5 col-sm-12 p-4 text-center">
-            <h1>Payment Submitted!</h1>
-            <a href="{% url 'index' %}">Go to the homepage</a>
+            <h1 class="payment-title mb-4">Payment Submitted!</h1>
+            <a href="{% url 'index' %}" class="btn btn-custom mb-3">Go to the homepage</a>
         </div>
     </div>
 </div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;700&display=swap');
+
+    body {
+        font-family: 'Quicksand', sans-serif;
+        background: linear-gradient(135deg, #ffffff90 0%, #ff242486 100%);
+        margin: 0;
+    }
+    .payment-title {
+        font-family: 'Pacifico', cursive;
+        color: #da3853;
+        font-weight: bold;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        animation: fadeInDown 1s ease-out;
+    }
+    .btn-custom {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #A40C0C 0%, #da3853 100%);
+        color: #FFFFFF;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-decoration: none; /* Ensure links are styled as buttons */
+    }
+    .btn-custom:hover {
+        background: linear-gradient(135deg, #da3853 0%, #A40C0C 100%);
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
 {% endblock content %}
