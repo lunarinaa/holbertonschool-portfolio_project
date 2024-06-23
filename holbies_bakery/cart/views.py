@@ -34,9 +34,8 @@ def cart_add(request):
         # response = JsonResponse({'MenuItem: ':item.name})
 
         response = JsonResponse({'qty: ':cart_quantity})
-        messages.success(request,("Added to cart"))
         return response
-
+        
 
 def cart_delete(request):
     cart = Cart(request)

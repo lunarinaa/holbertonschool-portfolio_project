@@ -51,7 +51,6 @@
                             color: #495057; /* Custom text color */
                             border: 1px solid #ced4da; /* Custom border color */
                             border-radius: .25rem; " class="form-select form-select-lg me-2" aria-label="Default select example" id="qty-cart" style="width: auto;">
-                                <option selected>Q</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -75,6 +74,8 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script>
+    $(document).ready(function() {
+        $('#qty-cart').val('1'); // Set default value to 1
     $(document).on('click', ".add-cart-btn", function(e){
         e.preventDefault();
         $.ajax({
@@ -87,8 +88,6 @@
                 action: 'post'
             },
             success: function(json){
-                // console.log(json);
-                // document.getElementById("cart_quantity").innerText = json.qty;
                 location.reload()
                 
             },
@@ -96,6 +95,7 @@
                 console.log('Error:', err);
             }
         });
+    });
     });
 </script>
 
