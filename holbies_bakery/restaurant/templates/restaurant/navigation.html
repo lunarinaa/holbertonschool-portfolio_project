@@ -5,11 +5,13 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto"> 
     </ul>
     <ul class="navbar-nav">
     </ul>
+    
   </div>
+  <a href="{% url 'dashboard' %}" class="dashboard-link">Dashboard</a>
 </nav>
  <style>
       @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;700&display=swap');
@@ -20,11 +22,14 @@
     font-family:"Poppins", sans-serif;
     }
   .navbar{
-    font-family: 'Pacifico', cursive;
+    font-family: "Poppins", sans-serif;
     background-color: #da3853;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
         border-bottom: 2px solid white;
+  }
+  .dashboard-link {
+    color: white;
   }
 
  </style>
