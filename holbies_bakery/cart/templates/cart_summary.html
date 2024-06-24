@@ -4,6 +4,7 @@
 {% load mathfilters %}
 {% block content %}
 </br>
+<br> </br>
 
 
 <style>
@@ -30,7 +31,7 @@
         transform: scale(1.1);
     }
     h2 {
-        font-family: 'Pacifico', cursive;
+        font-family: "Poppins", sans-serif;
         font-size: 3rem;
         font-weight: 700; /* Change font-weight here */
         color:#a40c0c  /* Change font-size here */
@@ -69,7 +70,7 @@
             {% for item in cart_items %}
             <tr>
                 <td><img src="{{ item.image.url }}" alt="{{ item.name }}" class="rounded" width="150"></td>
-                <td style="font-family: 'Pacifico', cursive; font-size: 20px;">{{ item.name }}</td>
+                <td style="font-family: 'Poppins', sans-serif; font-size: 20px;">{{ item.name }}</td>
                 <td>
                     <div class="d-flex align-items-center">
                         <select class="form-select me-2" aria-label="Default select example" id="select{{item.id}}" style="width: auto;">
@@ -109,25 +110,26 @@
 
         </tbody>
     </table>
+   
     {% else %}
+    <br> </br>
+    <br> </br>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-        <div class="row justify-content-center" >
-            <div class="col-md-6 text-center">
-                <div class="card border-danger" style=" background-color: rgba(255, 255, 255, 0.741);">
-                    <div class="card-header text-white" style="background-color: #a40c0c;">
-                        <h2 style="color: aliceblue;">Oops..</h2>
-                    </div>
-                    <div class="card-body">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="250" height="200" fill="#a40c0c" class="bi bi-basket2" viewBox="0 0 16 16">
-                            <path d="M4 10a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0zm3 0a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0zm3 0a1 1 0 1 1 2 0v2a1 1 0 0 1-2 0z"/>
-                            <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-.623l-1.844 6.456a.75.75 0 0 1-.722.544H3.69a.75.75 0 0 1-.722-.544L1.123 8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.163 8l1.714 6h8.246l1.714-6z"/>
-                        </svg>
-                        <h4>Your cart is empty</h4>
-                    </div>
-                </div>
-            </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h2 style="color: #a40c0c;">Oops..</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="250" height="200" fill="#a40c0c" class="bi bi-basket2" viewBox="0 0 16 16">
+                <path d="M4 10a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0zm3 0a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0zm3 0a1 1 0 1 1 2 0v2a1 1 0 0 1-2 0z"/>
+                <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-.623l-1.844 6.456a.75.75 0 0 1-.722.544H3.69a.75.75 0 0 1-.722-.544L1.123 8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.163 8l1.714 6h8.246l1.714-6z"/>
+            </svg>
+            <h4>Your cart is empty</h4>
+            <br> </br>
+            <br> </br> <br> </br>
+            
         </div>
     </div>
+    
+
     {% endif %}
     
 </div>

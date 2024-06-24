@@ -8,7 +8,7 @@
         .footer {
             background-color: #da3853;
             padding: 0.2rem 0.8rem;
-            border-top: 2px solid white;
+            
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
             /* Center and stack content */
             display: flex;
@@ -21,7 +21,7 @@
         }
 
 
-        .footer-logo {
+        <!-- .footer-logo {
             display: flex;
             align-items: center;
             margin-bottom: 1rem; 
@@ -30,10 +30,10 @@
         .footer-logo img {
             height: 60px;
             margin-right: 1rem;
-        }
+        } -->
 
         .footer-links {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
 
@@ -43,9 +43,9 @@
     </style>
 
     <div class="footer-logo">  
-        <img src="{% static 'logo/logo_white.svg' %}" alt="Holbies' Bakery Logo">
-        <a class="btn btn-custom nav-link" href="{% url 'dashboard' %}"> Bakery Login</a>
-        <a href=""></a>
+        <!-- <img src="{% static 'logo/logo_white.svg' %}" alt="Holbies' Bakery Logo"> -->
+        <a href="{% url 'index' %}"> Holbies' Bakery.</a> 
+        
     </div>
-    <div class="footer-text"> &copy; {% now "Y" %} <a href="http://localhost:8000"> Holbies' Bakery.</a> All rights reserved.</div>
+    <div class="footer-text"> &copy; {% now "Y" %} <a href="{% url 'dashboard' %}"> Bakery Login</a> </div>
 </footer>
