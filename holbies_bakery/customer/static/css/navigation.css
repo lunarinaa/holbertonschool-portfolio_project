@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #a40c0c; 
+    background-color: #FF577B; 
 }
 
 .navbar-brand img {
@@ -19,7 +19,7 @@
 }
 
 .btn-custom {
-    background-color: #a40c0c; 
+    background-color: #FF577B; 
     color: #ffffff; 
     padding: 10px 15px; 
     border-radius: 10px; 
@@ -47,7 +47,7 @@
 
 .badge {
     color: #d25454; 
-    border: 1px solid #a40c0c; 
+    border: 1px solid #FF577B; 
     font-size: 1rem; 
 }
 

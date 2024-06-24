@@ -8,17 +8,17 @@
 
     body {
         font-family: 'Quicksand', sans-serif;
-        background: linear-gradient(135deg, #ffffff90 0%, #ff242486 100%);
+        background: linear-gradient(135deg, #FFF8F8 0%, #e56180 100%);
         margin: 0;
     }
     .navbar {
-        background-color: #da3853;
+        background-color: #f64361;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 1rem 1.5rem;
         border-bottom: 2px solid white;
     }
     .navbar-brand img {
-        height: 50px;
+        height: 70px;
     }
     .nav-link {
         font-family: 'Quicksand', sans-serif;
@@ -32,10 +32,10 @@
     }
     .btn-custom {
         padding: 10px 20px;
-        border: 2px solid #da3853;
+        border: 2px solid #f64361;
         border-radius: 30px;
         background-color: transparent;
-        color: #da3853;
+        color: #f64361;
         cursor: pointer;
         transition: all 0.3s ease;
         display: flex;
@@ -45,12 +45,12 @@
         text-decoration: none !important;
     }
     .btn-custom:hover {
-        background-color: #da3853;
+        background-color: #f64361;
         color: #FFFFFF;
         border: 2px solid #A40C0C;
     }
     .badge {
-        background-color: #da3853;
+        background-color: #f64361;
         color: #FFFFFF;
         font-size: 0.75rem;
         padding: 0.5em;
@@ -61,7 +61,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top">
   <a class="navbar-brand" href="{% url 'index' %}">
-    <img src="{% static 'logo/logo.png' %}" alt="Holbies' Bakery Logo" class="img-fluid">
+    <img src="{% static 'logo/logo_white.svg' %}" alt="Holbies' Bakery Logo" class="img-fluid">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
