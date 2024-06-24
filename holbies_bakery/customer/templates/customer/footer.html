@@ -10,73 +10,48 @@
             padding: 1rem 1.5rem;
             border-top: 2px solid white;
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            font-family: 'Quicksand', sans-serif;
-        }
-        .footer-content {
+            /* Center and stack content */
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center;    /* Center items horizontally */
+            font-family: 'Quicksand', sans-serif;
+            width: 100%; 
+            position: fixed;
+            bottom: 0;
         }
+
+        .footer-content { /* Not needed anymore as we're stacking directly in .footer */
+            /* display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap; */
+        }
+
         .footer-logo {
             display: flex;
             align-items: center;
+            margin-bottom: 1rem; 
         }
+
         .footer-logo img {
-            height: 50px;
+            height: 60px;
             margin-right: 1rem;
         }
+
         .footer-links {
-            display: flex;
-            align-items: center;
+            margin-bottom: 1rem;
         }
-        .footer-links a {
-            color: white !important;
-            font-size: 1rem;
-            text-decoration: none !important;
-            margin: 0 1rem;
-            transition: color 0.3s ease, background-color 0.3s ease;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-        .footer-links a:hover {
-            color: #A40C0C !important;
-            background-color: #ff9999;
-            text-decoration: none !important;
-        }
-        .social-media {
-            display: flex;
-            align-items: center;
-        }
-        .social-media a {
-            margin: 0 0.5rem;
-        }
-        .social-media img {
-            width: 24px;
-            height: 24px;
-            transition: transform 0.3s ease;
-        }
-        .social-media img:hover {
-            transform: scale(1.1);
+
+
+        .footer-text {
+            font-size: 0.9rem;
         }
     </style>
 
-    <div class="footer-content">
-        <div class="footer-logo">
-            <img src="{% static 'logo/logo_white.svg' %}" alt="Holbies' Bakery Logo">
-            <a href="http://localhost:8000">Holbies' Bakery</a>
-        </div>
-        <div class="footer-links">
-            <a href="{% url 'dashboard' %}">Bakery Login</a>
-        </div>
-        <div class="social-media">
-            <a href="https://www.facebook.com/profile.php?id=100095726403283/" target="_blank">
-                <img src="{% static 'images/facebook-icon.png' %}" alt="Facebook">
-            </a>
-            <a href="https://www.instagram.com/holbertonazerbaijan/" target="_blank">
-                <img src="{% static 'images/instagram-icon.png' %}" alt="Instagram">
-            </a>
-        </div>
+    <div class="footer-logo">  
+        <img src="{% static 'logo/logo_white.svg' %}" alt="Holbies' Bakery Logo">
+        <a class="btn btn-custom nav-link" href="{% url 'dashboard' %}"> Bakery Login</a>
+        <a href=""></a>
     </div>
+    <div class="footer-text"> &copy; {% now "Y" %} <a href="http://localhost:8000"> Holbies' Bakery.</a> All rights reserved.</div>
 </footer>
