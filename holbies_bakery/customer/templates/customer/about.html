@@ -2,75 +2,206 @@
 {% load static %}
 {% block content %}
 
-</br></br>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    body{
-        background: url(../../static/images/holbies.jpeg) no-repeat;
-        background-size: cover;
-        font-family:"Poppins", sans-serif;
-    }
-    .container {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .container::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url(../../static/images/holbies.jpeg) no-repeat center center;
-        background-size: cover;
-        filter: blur(20px);
-        z-index: -1;
-    }
-    
-    .row {
-        position: relative;
-        z-index: 1;
-        background: rgba(255, 255, 255, 0.589); /* Optional: add a slight background color to make text more readable */
-        padding: 10px;
-        border-radius: 10px;
-    }
-    </style>
-<div class="container mb-5">
+<div class="container mt-5 pt-5">
     <div class="row justify-content-center mt-5">
-        <div class="col-md-8 col-sm-8 offset-md-1 p-5 text-center">
-            <h2 style=" font-family: 'Pacifico', cursive;
-            color: #A40C0C;
-            font-weight: bold;
-            font-size: 3rem;color: rgb(119, 1, 1);"><p><strong><em>Welcome to Holbies' Bakery!</em></strong></p></h2>
+        <div class="col-md-8 col-sm-12 text-center">
+            <h1 class="display-4 menu-title">Welcome to Holbies' Bakery!</h1>
         </div>
     </div>
-    <div class="row justify-content-center mt-1">
+
+    <div class="row justify-content-center mt-3">
         <div class="col-md-10 col-sm-12 offset-md-1 p-4 text-left">
             
-            <p>At Holbies' Bakery, we believe in the magic of baking. Our story began with a passion for creating delicious, handcrafted cakes and pastries that bring joy to every occasion. Nestled in the heart of our community, Holbies' Bakery has become a cherished destination for cake lovers and dessert enthusiasts alike.</p>
+            <div class="navigation-container">
+                
+                <nav>
+                </br>
+            </br>
+        </br>
+                    <ul class="nav-links">
+                        <li><a href="#" class="section-nav-link" data-target="our-journey">Our Journey</a></li>
+                        <li><a href="#" class="section-nav-link" data-target="what-we-offer">What We Offer</a></li>
+                        <li><a href="#" class="section-nav-link" data-target="delivery-service">Delivery Service</a></li>
+                        <li><a href="#" class="section-nav-link" data-target="our-philosophy">Our Philosophy</a></li>
+                        <li><a href="#" class="section-nav-link" data-target="our-community">Our Community</a></li>
+                        <li><a href="#" class="section-nav-link" data-target="visit-us">Visit Us</a></li>
+                        
+                    </ul>
+                </nav>
+                <img src="{% static 'images/holbies1.jpeg' %}" alt="Holbies Bakery" class="nav-image">
+                
+    
+            </div>
             
-            <h3>Our Journey</h3>
-            <p>Founded in 2024, Holbies' Bakery started as a small family-owned shop with a big dream: to share our love for baking with the world. Over the years, we've grown and evolved, but our commitment to quality and tradition has remained unwavering. Each cake we create is a testament to our dedication to using the finest ingredients and time-honored recipes.</p>
             
-            <h3>What We Offer</h3>
-            <p>At Holbies' Bakery, we specialize in a wide variety of cakes, from classic flavors to innovative creations. Whether you're looking for a show-stopping wedding cake, a delightful birthday cake, or a simple yet elegant dessert for any occasion, we've got you covered. Our menu also features an array of pastries, cookies, and other sweet treats, all made with the same care and attention to detail.</p>
+            <div id="our-journey" class="content-section">
+                <h3>Our Journey</h3>
+                <p>Founded in 2024, Holbies' Bakery started as a small family-owned shop with a big dream: to share our love for baking with the world. Over the years, we've grown and evolved, but our commitment to quality and tradition has remained unwavering. Each cake we create is a testament to our dedication to using the finest ingredients and time-honored recipes. From the very beginning, our goal has been to craft treats that not only taste incredible but also create lasting memories.</p>
+            </div>
+        </br>
+    </br>
+</br>
+    
+            <div id="what-we-offer" class="content-section">
+                <h3>What We Offer</h3>
+                <p>At Holbies' Bakery, we specialize in a wide variety of cakes, from classic flavors to innovative creations. Whether you're looking for a show-stopping wedding cake, a delightful birthday cake, or a simple yet elegant dessert for any occasion, we've got you covered. Our menu also features an array of pastries, cookies, and other sweet treats, all made with the same care and attention to detail. Each product is crafted to perfection, ensuring that every bite is an experience worth savoring.</p>
+            </div>
+        </br>
+    </br>
+</br>
+    
             
-            <h3>Delivery Service</h3>
-            <p>We understand that convenience is key, which is why we offer delivery services to bring our delicious creations straight to your door. Whether you're planning a special event or just craving a sweet treat, you can enjoy our cakes and pastries without leaving the comfort of your home. Simply place your order online or give us a call, and we'll handle the rest.</p>
+            <div id="delivery-service" class="content-section">
+                <h3>Delivery Service</h3>
+                <p>We understand that convenience is key, which is why we offer delivery services to bring our delicious creations straight to your door. Whether you're planning a special event or just craving a sweet treat, you can enjoy our cakes and pastries without leaving the comfort of your home. Simply place your order online or give us a call, and we'll handle the rest. Our delivery service ensures that you can enjoy our fresh and delightful baked goods wherever you are.</p>
+            </div>
+        </br>
+    </br>
+</br>
+    
             
-            <h3>Our Philosophy</h3>
-            <p>We believe that baking is an art, and every cake is a masterpiece. Our talented team of bakers and decorators pour their hearts into every creation, ensuring that each bite is a memorable experience. We pride ourselves on our ability to customize our cakes to meet your unique preferences and dietary needs, offering options for gluten-free, vegan, and other special diets.</p>
+            <div id="our-philosophy" class="content-section">
+                <h3>Our Philosophy</h3>
+                <p>We believe that baking is an art, and every cake is a masterpiece. Our talented team of bakers and decorators pour their hearts into every creation, ensuring that each bite is a memorable experience. We pride ourselves on our ability to customize our cakes to meet your unique preferences and dietary needs, offering options for gluten-free, vegan, and other special diets. We are committed to using the best ingredients and creating designs that reflect the uniqueness of each customer.</p>
+            </div>
+        </br>
+    </br>
+</br>
+    
+            <div id="our-community" class="content-section">
+                <h3>Our Community</h3>
+                <p>Holbies' Bakery is more than just a bakery; it's a part of the community. We are grateful for the support and love we've received from our loyal customers over the years. We're committed to giving back and actively participate in local events and charity initiatives. Our bakery is a place where friends and families come together to celebrate life's sweetest moments. We strive to create a warm and welcoming atmosphere where everyone feels at home.</p>
+            </div>
             
-            <h3>Our Community</h3>
-            <p>Holbies' Bakery is more than just a bakery; it's a part of the community. We are grateful for the support and love we've received from our loyal customers over the years. We're committed to giving back and actively participate in local events and charity initiatives. Our bakery is a place where friends and families come together to celebrate life's sweetest moments.</p>
-            
-            <h3>Visit Us</h3>
-            <p>We invite you to visit Holbies' Bakery and experience the warmth and charm that have made us a beloved local favorite. Come in for a slice of cake, a cup of coffee, or simply to say hello. We can't wait to share our passion for baking with you.</p>
-            
-            <p>Thank you for choosing Holbies' Bakery – where every cake tells a story.</p>
+        </br>
+    </br>
+</br>
+    
+            <div id="visit-us" class="content-section">
+                <h3>Visit Us</h3>
+                <p>We invite you to visit Holbies' Bakery and experience the warmth and charm that have made us a beloved local favorite. Come in for a slice of cake, a cup of coffee, or simply to say hello. We can't wait to share our passion for baking with you. Our doors are always open, and we look forward to making your visit a delightful and memorable one. Thank you for choosing Holbies' Bakery – where every cake tells a story.</p>
+            </div>
         </div>
     </div>
+</br>
+</br>
+</br>
+
 </div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+
+
+    body {
+        font-family: 'Libre Baskerville', serif;
+        background: linear-gradient(135deg, #ffffff90 0%, #ffd6d686 100%);
+        background-size: cover;
+        background-attachment: fixed;
+        margin: 0;
+        min-height: 100vh;
+    }
+    .container {
+        padding-top: 100px; /* Adjust this value based on your navbar height */
+    }
+    .menu-title {
+        
+        font-family: 'Libre Baskerville', serif;
+        color: #da3853;
+        font-weight: bold;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        animation: fadeInDown 1s ease-out;
+    }
+
+    .navigation-container {
+        display: flex;
+        align-items: flex-start;
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    nav ul li {
+        margin-bottom: 15px;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #da3853;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+    nav ul li a:hover {
+        color: #A40C0C;
+    }
+    .nav-image {
+        max-width: 420px; /* Increased the max-width */
+        margin-left: 100px;
+    }
+    .content-section {
+        display: none;
+    }
+    .content-section.active {
+        display: block;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Show content based on navigation click
+        const sectionNavLinks = document.querySelectorAll('.section-nav-link');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        sectionNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('data-target');
+                contentSections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+            });
+        });
+    });
+</script>
+
 {% endblock content %}
