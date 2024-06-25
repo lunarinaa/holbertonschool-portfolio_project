@@ -25,7 +25,7 @@ SECRET_KEY = '(b%y6my(@zizf(agz!*6j+picf^!%tfikl#8hk3@+=e!s4a8bo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://holbiesbakery.azurewebsites.net']
 
 
 # Application definition
@@ -159,3 +159,5 @@ LOGIN_REDIRECT_URL = 'dashboard'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEBUG = False
