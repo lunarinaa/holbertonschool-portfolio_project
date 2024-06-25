@@ -56,7 +56,7 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CLIENT_ID }}, ${{ secrets.AZURE_CLIENT_SECRET }}, ${{ secrets.AZURE_TENANT_ID }}
+          creds: ${{ secrets.AZURE_CLIENT_ID }},${{ secrets.AZURE_CLIENT_SECRET }},${{ secrets.AZURE_TENANT_ID }}
           auth-type: SERVICE_PRINCIPAL
 
       - name: Download artifact from build job
