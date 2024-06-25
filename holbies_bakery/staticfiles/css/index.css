@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+    body {
+        color: #333;
+        font-family:'Libre Baskerville', serif;
+    }
+    
+    .content-container {
+        margin-left: 45%;
+        padding: 2rem;
+        max-width: 50%;
+    }
+    .welcome-heading {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #E35264;
+        margin-bottom: 1rem;
+        font-family:'Libre Baskerville', serif;
+    }
+    .welcome-subheading {
+        font-size: 1.5rem;
+        color: #555;
+        margin-bottom: 2rem;
+        font-family:'Libre Baskerville', serif;
+    }
+    .description {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #444;
+        text-align: justify;
+        margin-bottom: 1.5rem;
+        font-family:'Libre Baskerville', serif;
+    }
+    .highlight {
+        font-weight: bold;
+        color: #b22222;
+    }
+    .quote {
+        font-style: italic;
+        color: #777;
+        margin-top: 2rem;
+        border-left: 4px solid #b22222;
+        padding-left: 1rem;
+        font-family:'Libre Baskerville', serif;
+    }
+    .carousel-item img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover; 
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: #b22222; 
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 5%;
+    }
+
+    

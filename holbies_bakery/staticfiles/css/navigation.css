@@ -1,0 +1,57 @@
+.navbar {
+    background-color: #FF577B; 
+}
+
+.navbar-brand img {
+    max-height: 80px; 
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff; 
+    margin-right: 15px; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #ff9999; 
+    color: #ffffff; 
+}
+
+.btn-custom {
+    background-color: #FF577B; 
+    color: #ffffff; 
+    padding: 10px 15px; 
+    border-radius: 10px; 
+    font-size: 1rem; 
+}
+
+.btn-custom:hover {
+    background-color: #ff9999; 
+    color: #ffffff; 
+}
+
+.btn-custom i {
+    color: #ffffff; 
+}
+
+.navbar-toggler {
+    border-color: #ffffff;
+    color: white;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    color: #ffffff; 
+   text-decoration-color: #ffffff;
+}
+
+.badge {
+    color: #d25454; 
+    border: 1px solid #FF577B; 
+    font-size: 1rem; 
+}
+
+.form-inline {
+    align-items: center;
+    color: white;
+}
