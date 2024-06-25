@@ -194,6 +194,9 @@
         .contact-container .row {
             flex-direction: column;
         }
+        .rounded {
+            border-radius: 20px; /* Adjust the value to change the roundness */
+        }
     }
 </style>
 
@@ -201,10 +204,10 @@
     <div class="contact-container">
         <div class="row">
             <div class="contact-details">
-                <h1>Contact Us</h1>
+                <h1>How to Find Us</h1>
                 <p>If you have any questions or need assistance, feel free to reach out to us through the contact information below. We are here to help!</p>
                 <ul class="contact-info">
-                    <li><i class="fas fa-map-marker-alt"></i> Address: Chinar Plaza 26 floor, Baku, Azerbaijan</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Address: Chinar Plaza, Baku, Azerbaijan</li>
                     <li><i class="fas fa-phone"></i> Phone: +994 55 123 4567</li>
                     <li><i class="fas fa-envelope"></i> Email: info@holbiesbakery.az</li>
                 </ul>
@@ -230,9 +233,14 @@
                     </tbody>
                 </table>
             </div>
+            <div>
+                <img src="{% static 'images/2.jpeg' %}" width="600" alt="Holbies Bakery" class="rounded">
+            </div>
             <div class="map-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.8083851574484!2d49.89746757622513!3d40.41309547144019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403063f2367dfdb3%3A0xce6752a9956f76dd!2sChinar%20Plaza!5e0!3m2!1sen!2saz!4v1717696411562!5m2!1sen!2saz" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+             
             </div>
+           
         </div>
     </div>
 </div>
