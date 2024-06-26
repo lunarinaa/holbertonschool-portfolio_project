@@ -20,9 +20,11 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     .card-body {
-        background: linear-gradient(135deg, #ffffff 0%, #ef87b7 100%);
+        background: linear-gradient(135deg, #ffffff 0%, #da3853 100%);
         border-radius: 10px;
         padding: 20px;
+        max-height: 250px;
+        overflow-y: auto;
     }
     .rounded {
         border-radius: 10px;
@@ -168,8 +170,8 @@
                                     <div class="d-flex flex-column">
                                         <div class="form-group form-check">
                                             <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}" id="dessert_{{ dessert.pk }}">
-                                            <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }}</label>
-                                            <p>${{ dessert.price }}</p>
+                                            <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }}: ${{ dessert.price }}</label>
+                                
                                         </div>
                                         <div class="form-group ml-3 mt-2 quantity-selector">
                                            <div><label for="quantity_{{ dessert.pk }}">Quantity:</label></div>
@@ -204,8 +206,8 @@
                                     <div class="d-flex flex-column">
                                         <div class="form-group form-check">
                                             <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}" id="dessert_{{ dessert.pk }}">
-                                            <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }}</label>
-                                            <p>${{ dessert.price }}</p>
+                                            <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }}: ${{ dessert.price }}</label>
+                                            
                                             
                                         </div>
                                         <div class="form-group ml-3 mt-2 quantity-selector">
@@ -226,13 +228,13 @@
         <!-- Pies -->
         <div class="pt-5" style="width: 100%;">
             <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#piesCollapse" aria-expanded="false" aria-controls="piesCollapse">
-                Pies
+                Pastries
             </button>
             <div class="collapse" id="piesCollapse">
                 <div class="card">
                     <div class="card-body">
                         {% for dessert in desserts %}
-                            {% if 'pie' in dessert.name|lower %}
+                            {% if 'pastry' in dessert.name|lower %}
                             <div class="row mt-4">
                                 <div class="col-md-2 col-sm-12">
                                     <img class="rounded" src="{{ dessert.image.url }}" width="70" height="90" alt="{{ dessert.name }}"/>
@@ -241,8 +243,8 @@
                                     <div class="d-flex flex-column">
                                         <div class="form-group form-check">
                                             <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}" id="dessert_{{ dessert.pk }}">
-                                            <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }} </label>
-                                            <p>${{ dessert.price }}</p>
+                                            <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }}: ${{ dessert.price }} </label>
+                                           
                                         </div>
                                         <div class="form-group ml-3 mt-2 quantity-selector">
                                             <label for="quantity_{{ dessert.pk }}">Quantity:</label>
@@ -275,8 +277,8 @@
                                 <div class="d-flex flex-column">
                                     <div class="form-group form-check">
                                         <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}" id="drink_{{ drink.pk }}">
-                                        <label class="form-check-label" for="drink_{{ drink.pk }}">{{ drink.name }}</label>
-                                        <p>${{ drink.price }}</p>
+                                        <label class="form-check-label" for="drink_{{ drink.pk }}">{{ drink.name }}: ${{ drink.price }}</label>
+                                        
                                     </div>
                                     <div class="form-group ml-3 mt-2 quantity-selector">
                                         <label for="quantity_{{ drink.pk }}">Quantity:</label>
@@ -334,7 +336,7 @@
                     </div>
                 </div>
             </div>
-
+            <br> <br>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-block btn-submit" data-toggle="modal" data-target="#submitModal">
               Submit Order
@@ -364,4 +366,5 @@
     </div>
 </div>
 </div>
+
 {% endblock content %}
