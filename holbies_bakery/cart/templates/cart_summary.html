@@ -53,6 +53,18 @@
         font-weight: 500; /* Change font-weight here */
         font-size: 18px;  /* Change font-size here */
     }
+    .custom-btn {
+        background: linear-gradient(135deg, #f64361 0%, #da3853 100%);
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        padding: 10px 20px;
+        transition: background 0.3s ease;
+        
+    }
+    .custom-btn:hover {
+        background: linear-gradient(135deg, #da3853 0%, #A40C0C 100%);
+    }
 </style>
 
 <div class="container mt-5">
@@ -100,7 +112,7 @@
                 <td colspan="4">
                     <div class="d-flex justify-content-between align-items-center">
                         <strong>Total: ${{ totals }}</strong>
-                        <a href="{% url 'checkout' %}" class="btn btn-danger">Checkout</a>
+                        <a href="{% url 'checkout' %}" class="btn custom-btn">Proceed to Checkout</a>
                     </div>
                     <br><br>
                 </br></br></br>

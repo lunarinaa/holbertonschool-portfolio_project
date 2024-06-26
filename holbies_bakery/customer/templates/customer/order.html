@@ -55,20 +55,23 @@
     }
     .quantity-selector label {
         font-weight: bold;
+        font-family:  'Libre Baskerville', serif;
+        font-size: 12px;
+        
     }
     .quantity-selector input {
         border-radius: 5px;
         border: none;
         padding: 5px;
         margin-top: 5px;
-        width: 60px;
+        width: 50px;
         text-align: center;
         background-color: #fff;
         border: 2px solid #e865a2;
         transition: all 0.3s;
     }
     .quantity-selector input:focus {
-        border-color: #f6d365;
+        border-color: #af0d91;
         outline: none;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
@@ -80,14 +83,14 @@
     }
     .form-check-label {
         font-family:  'Libre Baskerville', serif;
-        font-size: 18px;
+        font-size: 16px;
 
     }
     .modal-content {
         background-color: #f8f9fa;
     }
     .custom-btn {
-        background: linear-gradient(45deg, #da3853, #e32f7d);
+        background: linear-gradient(135deg, #f64361 0%, #da3853 100%);
         color: white;
         border: none;
         border-radius: 30px;
@@ -118,12 +121,12 @@
             font-weight: bold; /* Bold labels */
         }
         .btn-submit {
-            background-color: #dc3545; /* Red submit button */
-            color: white; /* White text */
-            border: none; /* No border */
-            padding: 10px 20px; /* Padding inside button */
-            font-size: 18px; /* Larger font size */
-            border-radius: 5px; /* Rounded corners */
+            background-color: #da3853; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 18px; 
+            border-radius: 5px;
         }
         .btn-submit:hover {
             background-color: #c82333; /* Darker red on hover */
@@ -138,80 +141,163 @@
                 {% csrf_token %}
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-6 col-sm-12 text-center">
-                        <h1>Place an Order</h1>
+                        <h1>Quick order</h1>
+                        <br>
+                        <h5>Order top-selling items in two clicks</h5>
                     </div>
                 </div>
 
-                <!-- Desserts Section -->
-                <div class="flex">
-                    <div class="pt-5" style="width: 100%;">
-                        <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#dessertsCollapse" aria-expanded="false" aria-controls="dessertsCollapse">
-                            Desserts
-                        </button>
-                        <div class="collapse" id="dessertsCollapse">
-                            <div class="card">
-                                <div class="card-body">
-                                    {% for dessert in desserts %}
-                                    <div class="row mt-4">
-                                        <div class="col-md-2 col-sm-12">
-                                            <img class="rounded" src="{{ dessert.image.url }}" width="100" height="120" alt="{{ dessert.name }}"/>
+<!-- Desserts Section -->
+      <!-- Desserts Section -->
+      <div class="flex">
+        <!-- Doughnuts -->
+        <div class="pt-5" style="width: 100%;">
+            <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#cakesCollapse" aria-expanded="false" aria-controls="cakesCollapse">
+                Doughnuts
+            </button>
+            <div class="collapse" id="cakesCollapse">
+                <div class="card">
+                    <div class="card-body">
+                        {% for dessert in desserts %}
+                            {% if 'doughnut' in dessert.name|lower %}
+                            <div class="row mt-4">
+                                <div class="col-md-2 col-sm-12">
+                                    <img class="rounded" src="{{ dessert.image.url }}" width="70" height="90" alt="{{ dessert.name }}"/>
+                                </div>
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="d-flex flex-column">
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}" id="dessert_{{ dessert.pk }}">
+                                            <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }}</label>
+                                            <p>${{ dessert.price }}</p>
                                         </div>
-                                        <div class="col-md-8 col-sm-12">
-                                            <div class="d-flex flex-column">
-                                                <div class="form-group form-check">
-                                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}" id="dessert_{{ dessert.pk }}">
-                                                    <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }} - ${{ dessert.price }}</label>
-                                                </div>
-                                                <div class="form-group ml-3 mt-2 quantity-selector">
-                                                    <label for="quantity_{{ dessert.pk }}">Quantity:</label>
-                                                    <input type="number" name="quantity_{{ dessert.pk }}" class="form-control" value="0" min="0" id="quantity_{{ dessert.pk }}">
-                                                </div>
-                                            </div>
+                                        <div class="form-group ml-3 mt-2 quantity-selector">
+                                           <div><label for="quantity_{{ dessert.pk }}">Quantity:</label></div>
+                                         <input type="number" name="quantity_{{ dessert.pk }}" class="form-control" value="0" min="0" id="quantity_{{ dessert.pk }}">
                                         </div>
                                     </div>
-                                    <hr />
-                                    {% endfor %}
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Drinks Section -->
-                    <div class="pt-5"  style="width: 100%;">
-                        <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#drinksCollapse" aria-expanded="false" aria-controls="drinksCollapse">
-                            Drinks
-                        </button>
-                        <div class="collapse" id="drinksCollapse">
-                            <div class="card">
-                                <div class="card-body">
-                                    {% for drink in drinks %}
-                                    <div class="row mt-4">
-                                        <div class="col-md-2 col-sm-12">
-                                            <img class="rounded" src="{{ drink.image.url }}" width="100" height="120" alt="{{ drink.name }}"/>
-                                        </div>
-                                        <div class="col-md-8 col-sm-12">
-                                            <div class="d-flex flex-column">
-                                                <div class="form-group form-check">
-                                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}" id="drink_{{ drink.pk }}">
-                                                    <label class="form-check-label" for="drink_{{ drink.pk }}">{{ drink.name }} - ${{ drink.price }}</label>
-                                                </div>
-                                                <div class="form-group ml-3 mt-2 quantity-selector">
-                                                    <label for="quantity_{{ drink.pk }}">Quantity:</label>
-                                                    <input type="number" name="quantity_{{ drink.pk }}" class="form-control" value="0" min="0" id="quantity_{{ drink.pk }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
+                            <hr />
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <!-- Cupcakes -->
+        <div class="pt-5" style="width: 100%;">
+            <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#cupcakesCollapse" aria-expanded="false" aria-controls="cupcakesCollapse">
+                Cupcakes
+            </button>
+            <div class="collapse" id="cupcakesCollapse">
+                <div class="card">
+                    <div class="card-body">
+                        {% for dessert in desserts %}
+                            {% if 'cupcake' in dessert.name|lower %}
+                            <div class="row mt-4">
+                                <div class="col-md-2 col-sm-12">
+                                    <img class="rounded" src="{{ dessert.image.url }}" width="70" height="90" alt="{{ dessert.name }}"/>
+                                </div>
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="d-flex flex-column">
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}" id="dessert_{{ dessert.pk }}">
+                                            <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }}</label>
+                                            <p>${{ dessert.price }}</p>
+                                            
+                                        </div>
+                                        <div class="form-group ml-3 mt-2 quantity-selector">
+                                            <label for="quantity_{{ dessert.pk }}">Quantity:</label>
+                                            <input type="number" name="quantity_{{ dessert.pk }}" class="form-control" value="0" min="0" id="quantity_{{ dessert.pk }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pies -->
+        <div class="pt-5" style="width: 100%;">
+            <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#piesCollapse" aria-expanded="false" aria-controls="piesCollapse">
+                Pies
+            </button>
+            <div class="collapse" id="piesCollapse">
+                <div class="card">
+                    <div class="card-body">
+                        {% for dessert in desserts %}
+                            {% if 'pie' in dessert.name|lower %}
+                            <div class="row mt-4">
+                                <div class="col-md-2 col-sm-12">
+                                    <img class="rounded" src="{{ dessert.image.url }}" width="70" height="90" alt="{{ dessert.name }}"/>
+                                </div>
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="d-flex flex-column">
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" name="items[]" class="form-check-input" value="{{ dessert.pk }}" id="dessert_{{ dessert.pk }}">
+                                            <label class="form-check-label" for="dessert_{{ dessert.pk }}">{{ dessert.name }} </label>
+                                            <p>${{ dessert.price }}</p>
+                                        </div>
+                                        <div class="form-group ml-3 mt-2 quantity-selector">
+                                            <label for="quantity_{{ dessert.pk }}">Quantity:</label>
+                                            <input type="number" name="quantity_{{ dessert.pk }}" class="form-control" value="0" min="0" id="quantity_{{ dessert.pk }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Drinks Section -->
+        <div class="pt-5"  style="width: 100%;">
+            <button class="btn custom-btn btn-block mb-3" type="button" data-toggle="collapse" data-target="#drinksCollapse" aria-expanded="false" aria-controls="drinksCollapse">
+                Drinks
+            </button>
+            <div class="collapse" id="drinksCollapse">
+                <div class="card">
+                    <div class="card-body">
+                        {% for drink in drinks %}
+                        <div class="row mt-4">
+                            <div class="col-md-2 col-sm-12">
+                                <img class="rounded" src="{{ drink.image.url }}" width="70" height="90" alt="{{ drink.name }}"/>
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="d-flex flex-column">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}" id="drink_{{ drink.pk }}">
+                                        <label class="form-check-label" for="drink_{{ drink.pk }}">{{ drink.name }}</label>
+                                        <p>${{ drink.price }}</p>
+                                    </div>
+                                    <div class="form-group ml-3 mt-2 quantity-selector">
+                                        <label for="quantity_{{ drink.pk }}">Quantity:</label>
+                                        <input type="number" name="quantity_{{ drink.pk }}" class="form-control" value="0" min="0" id="quantity_{{ drink.pk }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+                   
                <!-- Customer Information Section -->
-               <div class="form-group pt-3">
+            <div class="container">
+              <div class="form-group pt-3">
                 <label for="name">Full Name</label>
                 <input required class="form-control" type="text" placeholder="Your Name" name="name" />
             </div>
@@ -219,6 +305,7 @@
             <div class="form-group pt-3">
                 <label for="name">Email Address</label>
                 <input required class="form-control" type="text" placeholder="example@example.com" name="email" />
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
 
             <div class="form-group pt-3">
@@ -249,16 +336,17 @@
             </div>
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#submitModal">
-              Submit Order!
+            <button type="button" class="btn btn-block btn-submit" data-toggle="modal" data-target="#submitModal">
+              Submit Order
             </button>
+            <br> <br> <br> <br>
 
             <!-- Modal -->
             <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="submitModalLabel">Submit Your Order!</h5>
+                    <h5 class="modal-title" id="submitModalLabel">Submit Your Order</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -270,7 +358,8 @@
                 </div>
               </div>
             </div>
-
+        </div>
+       
         </form>
     </div>
 </div>

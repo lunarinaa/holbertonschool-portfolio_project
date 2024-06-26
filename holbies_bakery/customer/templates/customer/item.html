@@ -5,21 +5,42 @@
     @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
 
     body{
-        background:url("../../static/images/_b5d1e7fe-3144-4a4c-81c1-66c4116c232e.jpeg");
+        background:  url(../../static/images/slide1.jpg);
         background-size: cover;
         font-family: 'Libre Baskerville', serif;
-        color:white;
+        color:rgb(0, 0, 0);
+    }
+    .btn-custom {
+        padding: 2px 5px;
+        border: none;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #f64361 0%, #da3853 100%);
+        color: #FFFFFF;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-size: 0.8rem;
+    }
+    .btn-custom:hover {
+        background: linear-gradient(135deg, #da3853 0%, #A40C0C 100%);
     }
     .card-wrapp{
-        background-color: rgba(108, 108, 108, 0.613);
-        backdrop-filter: blur(15px); 
+        background-color: rgba(251, 244, 244, 0.613);
+        backdrop-filter: blur(20px); 
         border-radius: 12px;
         transition: transform 0.5s cubic-bezier(.33, .72, .602, .919);
         /* Adjust blur amount as needed */
     }
+  
     .card-title{
         font-family: 'Libre Baskerville', serif;
+        color: #da3853;
         font-size: 1.5rem;
+        
     }
     .img-fluid{
         height: 100%;
@@ -44,11 +65,11 @@
                     <p class="card-text">{{ item.description }}</p>
                     <div class="mb-3">
                         <div class="d-flex align-items-center">
-                            <select style="height:30px; /* Adjust width as needed */
-                            font-size: 16px; /* Adjust font size as needed */
-                            background-color: #f8f9fa; /* Custom background color */
-                            color: #495057; /* Custom text color */
-                            border: 1px solid #ced4da; /* Custom border color */
+                            <select style="height:40px; 
+                            font-size: 20px; 
+                            background-color: #ffffff;
+                            color: #495057; 
+                            border: 2px solid #da3853; 
                             border-radius: .25rem; " class="form-select form-select-lg me-2" aria-label="Default select example" id="qty-cart" style="width: auto;">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -56,9 +77,9 @@
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-                            <button type="button" value="{{ item.id }}" class="add-cart-btn btn btn-outline-light btn-sm update-cart">Add to Cart</button>
-<a href="{% url 'cart_summary' %}" class="btn btn-outline-light btn-sm update-cart me-2" style="color: aliceblue;">Go to cart</a>
-<a href="{% url 'menu' %}" class="btn btn-outline-light btn-sm update-cart">Back to products</a>
+                            <button type="button" value="{{ item.id }}" class="add-cart-btn btn btn-custom update-cart">Add to Cart</button>
+<a href="{% url 'cart_summary' %}" class="btn btn-custom update-cart me-2">Go to cart</a>
+<a href="{% url 'menu' %}" class="btn btn-custom update-cart">Back to products</a>
 
                         </div>
                     </div>
