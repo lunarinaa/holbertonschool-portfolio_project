@@ -20,7 +20,7 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     .card-body {
-        background: linear-gradient(135deg, #ffffff 0%, #da3853 100%);
+        background: linear-gradient(135deg, #ffffff90 0%, #facdcd86 100%);
         border-radius: 10px;
         padding: 20px;
         max-height: 250px;
@@ -91,7 +91,7 @@
     .modal-content {
         background-color: #f8f9fa;
     }
-    .custom-btn {
+    .custom-btn, .btn-danger {
         background: linear-gradient(135deg, #f64361 0%, #da3853 100%);
         color: white;
         border: none;
@@ -101,7 +101,7 @@
         padding: 10px 20px;
         transition: background 0.3s ease;
     }
-    .custom-btn:hover {
+    .custom-btn:hover, .btn-danger:hover {
         background: linear-gradient(45deg, #da3853, #c62828);
     }
     .flex {
@@ -234,7 +234,7 @@
                 <div class="card">
                     <div class="card-body">
                         {% for dessert in desserts %}
-                            {% if 'pastry' in dessert.name|lower %}
+                            {% if 'pie' in dessert.name|lower %}
                             <div class="row mt-4">
                                 <div class="col-md-2 col-sm-12">
                                     <img class="rounded" src="{{ dessert.image.url }}" width="70" height="90" alt="{{ dessert.name }}"/>
@@ -338,30 +338,28 @@
             </div>
             <br> <br>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-block btn-submit" data-toggle="modal" data-target="#submitModal">
-              Submit Order
-            </button>
-            <br> <br> <br> <br>
-
-            <!-- Modal -->
-            <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="submitModalLabel">Submit Your Order</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Go Back</button>
-                    <button type="submit" class="btn btn-danger">Place Order!</button>
+            <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#submitModal">
+                Submit Order
+              </button>
+  
+              <!-- Modal -->
+              <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="submitModalLabel">Submit Your Order</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-light" data-dismiss="modal">Go Back</button>
+                      <button type="submit" class="btn btn-danger">Place Order!</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-        </div>
-       
+  <br> <br>
         </form>
     </div>
 </div>
