@@ -68,7 +68,7 @@ Holbies Bakery is a food-ordering web application focusing on cakes and bakery i
 
 Here is a screenshot of our landing page:
 
-![Landing page](holbies_bakery/screenshots/landing_page.png)
+![Landing page](holbies_bakery/screenshots/image.png)
 
 ## Contributing
 - Fork the repository.
