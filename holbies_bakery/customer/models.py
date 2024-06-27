@@ -7,7 +7,11 @@ class MenuItem(models.Model):
     image = models.ImageField(upload_to='menu_images/')
     price = models.DecimalField(max_digits=5, decimal_places=2)
     category = models.ManyToManyField('Category', related_name='item')
-
+    
+    # Add sale 
+    is_sale = models.BooleanField(default=False)
+    sale_price = models.DecimalField(default=0,max_digits=5, decimal_places=2)
+    
     def __str__(self):
         return self.name
 

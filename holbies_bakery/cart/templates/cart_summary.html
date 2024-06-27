@@ -104,14 +104,23 @@
                         <button type="button" data-item_id="{{ item.id }}" class="btn btn-outline-danger btn-sm  delete-item">Remove</button>
                     </div>
                 </td>
+                {% if item.is_sale %}
+                <td style="font-weight: 600;">${{ item.sale_price }}</td>
+                <tr>
+                
+            </tr>
+
+                {% else %}
+
                 <td style="font-weight: 600;">${{ item.price }}</td>
             </tr>
+            {% endif %}
             {% endfor %}
 
             <tr>
                 <td colspan="4">
                     <div class="d-flex justify-content-between align-items-center">
-                        <strong>Total: ${{ totals }}</strong>
+                        <strong>Total: ${{ overall }}</strong>
                         <a href="{% url 'checkout' %}" class="btn custom-btn">Proceed to Checkout</a>
                     </div>
                     <br><br>
@@ -122,6 +131,7 @@
 
         </tbody>
     </table>
+    
    
     {% else %}
     <br> </br>

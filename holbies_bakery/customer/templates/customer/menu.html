@@ -26,6 +26,22 @@
 
     <div class="row justify-content-center mt-3">
         {% for item in menu_items %}
+        {% if item.is_sale %}
+        <div class="col-md-4 col-sm-12 text-center mb-5 menu-item" data-category="{{ item.category }}" data-name="{{ item.name|lower }}">
+            <div class="card shadow-sm h-100 fade-in-down">
+                <div class="badge bg-danger position-absolute star-badge"
+                style="top: 0.5rem; right: 0.5rem">Sale<i class="bi bi-percent"></i></div>
+                <img class="card-img-top rounded-top" src="{{ item.image.url }}" alt="{{ item.name }}" style="height: 320px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title"><strong class="cake-name">{{ item.name }}</strong></h5>
+                    <p class="card-text text-muted"><strike>${{ item.price }}</strike>  ${{ item.sale_price }}</p>
+                </div>
+                <div class="card-footer bg-white border-top-0">
+                    <a class="btn btn-view-details fade-in" href="{% url 'item' item.id %}">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
         <div class="col-md-4 col-sm-12 text-center mb-5 menu-item" data-category="{{ item.category }}" data-name="{{ item.name|lower }}">
             <div class="card shadow-sm h-100 fade-in-down">
                 <img class="card-img-top rounded-top" src="{{ item.image.url }}" alt="{{ item.name }}" style="height: 320px; object-fit: cover;">
@@ -38,11 +54,13 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
 <br/>
 <br/>
+
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;700&display=swap');
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
@@ -54,7 +72,7 @@
         margin: 0;
     }
     .container {
-        padding-top: 100px; /* Adjust this value based on your navbar height */
+        padding-top: 100px; 
     }
     .menu-title {
         font-family: 'Libre Baskerville', serif;
@@ -64,6 +82,22 @@
         margin-bottom: 1rem;
         animation: fadeInDown 1s ease-out;
     }
+    .star-badge {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #da3853;
+        font-size: 1rem;
+        text-align: center;
+        border-color: #d2d2d2;
+        background: linear-gradient(60deg, #ffffff90 0%, #d01010ed 100%);
+    }
+    
     .menu-description {
         font-family: 'Libre Baskerville', serif;
         color: #34495e;

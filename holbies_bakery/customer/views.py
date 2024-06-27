@@ -190,13 +190,28 @@ class MenuSearch(View):
 # updated part 
 
 class Checkout(View):
+    def calculate_discount(self, items):
+        discount = 0
+        for item in items:
+            if item.sale_price is not None:
+                discount += (item.price - item.sale_price)
+        return discount
+    
     def get(self, request, *args, **kwargs):
         cart = Cart(request)
         items = cart.get_items()
         quantities = cart.get_quants()
         cart_total = cart.cart_total()
+        sale_total = cart.cart_sale()
+        overall_total = cart_total + sale_total
+        discount = self.calculate_discount(items)
+        
 
-        context = {'items': items, 'quantities': quantities, 'cart_total': cart_total}
+        context = {
+            'items': items,
+            'quantities': quantities, 'cart_total': cart_total, 'overall_total': overall_total, 'discount': discount
+            }
+
         return render(request, 'customer/checkout.html', context)
 
     def post(self, request, *args, **kwargs):
@@ -209,10 +224,13 @@ class Checkout(View):
 
         cart = Cart(request)
         order_items = {'items': []}
-        price = 0
+        cart_total = cart.cart_total()
+        sale_total = cart.cart_sale()
+        overall_total = cart_total + sale_total
+        discount = self.calculate_discount(cart.get_items())
 
         order = OrderModel.objects.create(
-            price=price,  
+            price=overall_total,  
             name=name,
             email=email,
             street=street,
@@ -229,9 +247,10 @@ class Checkout(View):
                 menu_item=item,
                 quantity=quantity
             )
+            item_price = item.sale_price if item.sale_price is not None else item.price
 
-            order.price += item.price * quantity  
-            order.save()
+            # order.price += item.price * quantity  
+            # order.save()
 
             item_data = {
                 'id': item.pk,
@@ -244,7 +263,7 @@ class Checkout(View):
        
         body = (
             "Thank you for your order! Your order will be delivered soon!\n"
-            f"Your total: {order.price}\n"
+            f"Your total: {overall_total}\n"
             "Enjoy!"
         )
 
@@ -262,9 +281,10 @@ class Checkout(View):
         # Pass order information to the confirmation page
         context = {
             'items': order_items['items'],
-            'price': order.price
+            'price': overall_total,
+            'discount': discount
         }
         return redirect('order-confirmation', pk=order.pk)
-
     
+   
     

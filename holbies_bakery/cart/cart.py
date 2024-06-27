@@ -28,7 +28,22 @@ class Cart():
             key = int(key)
             for i in items:
                 if i.id == key:
-                   total = total + (i.price * value)
+                   if not i.sale_price:
+                       total = total + (i.price * value)
+        return total
+    
+    #sale 
+    def cart_sale(self):
+        item_ids = self.cart.keys()
+        items = MenuItem.objects.filter(id__in=item_ids)
+        quantities = self.cart
+        total = 0
+        for key, value in quantities.items():
+            key = int(key)
+            for i in items:
+                if i.id == key:
+                   if i.sale_price:
+                       total = total + (i.sale_price * value)
         return total
 
     

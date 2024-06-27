@@ -61,7 +61,11 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ item.name }} ${{ item.price }}</h5>
+
+                    {% if item.is_sale %}
+
+                    <h5 class="card-title">{{ item.name }} </h5>
+                    <h5><strike>${{ item.price }}</strike> ${{ item.sale_price}} </h5>
                     <p class="card-text">{{ item.description }}</p>
                     <div class="mb-3">
                         <div class="d-flex align-items-center">
@@ -84,6 +88,33 @@
                         </div>
                     </div>
                     
+                </div>
+
+                    {% else %}
+                    <h5 class="card-title">{{ item.name }} </h5>
+                    <h5>${{ item.price }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center">
+                            <select style="height:40px; 
+                            font-size: 20px; 
+                            background-color: #ffffff;
+                            color: #495057; 
+                            border: 2px solid #da3853; 
+                            border-radius: .25rem; " class="form-select form-select-lg me-2" aria-label="Default select example" id="qty-cart" style="width: auto;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <button type="button" value="{{ item.id }}" class="add-cart-btn btn btn-custom update-cart">Add to Cart</button>
+<a href="{% url 'cart_summary' %}" class="btn btn-custom update-cart me-2">Go to cart</a>
+<a href="{% url 'menu' %}" class="btn btn-custom update-cart">Back to products</a>
+
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
