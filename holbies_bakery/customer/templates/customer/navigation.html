@@ -15,10 +15,11 @@
         background-color: #f64361;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 1rem 1.5rem;
+        height: 60px;
        
     }
     .navbar-brand img {
-        height: 70px;
+        height: 50px;
     }
     .nav-link {
       font-family: 'Libre Baskerville', serif;
@@ -61,7 +62,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top">
   <a class="navbar-brand" href="{% url 'index' %}">
-    <img src="{% static 'logo/logo_white.svg' %}" alt="Holbies' Bakery Logo" class="img-fluid">
+    <img src="{% static 'logo/logo_white.svg' %}" alt="Holbies' Bakery Logo" class="img-fluid" style="height: 60px">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

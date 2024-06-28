@@ -11,15 +11,22 @@
     }
     
     .featured-image {
+        
         position: fixed;
         top: 0;
         left: 0;
         height: 100%;
         width: 40%;
-        background: url("{% static 'images/bakery.png' %}") no-repeat center center;
+        background: url("{% static 'images/index3.jpeg' %}") no-repeat center center;
         background-size: cover;
         z-index: -1;
+        border-right: 2px solid whitesmoke;
+        transition: border 1s ease;
     }
+    .featured-image:hover {
+        border-right: 20px solid rgba(255, 255, 255, 0.5);
+    }
+    
     .btn-product {
         background-color: #fa3048;
         color: rgb(0, 11, 31); 

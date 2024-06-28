@@ -1,5 +1,5 @@
 {% load static %}
-<footer class="footer fixed-bottom">
+<footer class="footer">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
 
     <style>
@@ -8,20 +8,19 @@
         .footer {
             background-color: #da3853;
             padding: 0.2rem 0.8rem;
-            
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            /* Center and stack content */
             display: flex;
-            flex-direction: column; /* Stack elements vertically */
-            align-items: center;    /* Center items horizontally */
+            flex-direction: column;
+            align-items: center;
             font-family: 'Libre Baskerville', serif;
-            width: 100%; 
+            width: 100%;
+            max-height: 65px;
             position: fixed;
-            bottom: 0;
+            bottom: -65px; 
+            transition: bottom 0.3s; 
         }
 
-
-        <!-- .footer-logo {
+        .footer-logo {
             display: flex;
             align-items: center;
             margin-bottom: 1rem; 
@@ -30,22 +29,31 @@
         .footer-logo img {
             height: 60px;
             margin-right: 1rem;
-        } -->
+        }
 
         .footer-links {
             margin-bottom: 0.5rem;
         }
-
 
         .footer-text {
             font-size: 0.9rem;
         }
     </style>
 
-    <div class="footer-logo">  
-        <!-- <img src="{% static 'logo/logo_white.svg' %}" alt="Holbies' Bakery Logo"> -->
-        <a href="{% url 'index' %}"> Holbies' Bakery</a> 
-        
+    <div class="footer-logo">
+        <a href="{% url 'index' %}"> Holbies' Bakery</a>
     </div>
     <div class="footer-text"> &copy; {% now "Y" %} <a href="{% url 'dashboard' %}"> Bakery Login</a> </div>
+    <script>
+        document.addEventListener('mousemove', function(event) {
+            var footer = document.querySelector('.footer');
+            var threshold = 50; 
+            if (window.innerHeight - event.clientY <= threshold) {
+                footer.style.bottom = '0';
+            } else {
+                footer.style.bottom = '-65px';
+            }
+        });
+    </script>
+    
 </footer>
